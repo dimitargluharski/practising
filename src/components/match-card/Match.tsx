@@ -3,7 +3,7 @@ import { Fixture } from '../../types/MatchProps';
 const Match = (props: Fixture) => {
     const { teams, goals } = props;
     return (
-        <div>
+        <div className='bg-slate-500'>
             {teams.home.name} | {goals.home} - {goals.away} | {teams.away.name}
         </div>
     )
