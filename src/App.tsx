@@ -1,31 +1,24 @@
-import { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import * as footballService from './services/football.js';
-
-import Match from './components/match-card/Match.js';
-import Panel from './components/Panel/Panel.js';
+import Home from './pages/Home/Home';
+import TV from './pages/TV/TV';
+import Live from './pages/Live/Live';
+import Videos from './pages/Videos/Videos';
+import Navbar from './components/Navbar';
 
 function App() {
-  const [matches, setMatches] = useState([]);
-
-  useEffect(() => {
-    footballService.getLiveMatches().then((data: any) => {
-      setMatches(data);
-    })
-  }, []);
-
   return (
-    <div className='flex '>
-      <Panel title='Live' button='view more'>
-        {matches.map((m, i) => (
-          <Match key={i} {...m} />
-        ))}
-      </Panel>
-      <Panel title='TV'>
-        list
-      </Panel>
+    <div className='flex'>
+      <Navbar />
+
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/tv' element={<TV />} />
+        <Route path='/live' element={<Live />} />
+        <Route path='/videos' element={<Videos />} />
+      </Routes>
     </div>
   )
 }
 
-export default App
+export default App;
