@@ -10,6 +10,7 @@ export interface Fixture {
     league: League;
     teams: Teams;
     timezone: string;
+    fixture: Fixtures;
 }
 
 type Goals = {
@@ -58,7 +59,14 @@ type Away = {
 };
 
 type Status = {
-    elapsed: number;
+    elapsed: number | null;
     long: string;
     short: string;
+};
+
+type Fixtures = {
+    id: number;
+    date: string;
+    timezone: string;
+    status: Status;
 };
