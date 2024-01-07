@@ -22,7 +22,7 @@ const MatchDetails = () => {
     return (
         <div>
             <div>
-                <Link to="/live" className='p-2 mt-2 mx-2 flex items-center shadow-md rounded-md font-semibold bg-slate-300'>
+                <Link to="/" className='p-2 mt-2 mx-2 flex items-center shadow-md rounded-md font-semibold bg-slate-300'>
                     <IoMdArrowRoundBack />
                     <span>Go Back</span>
                 </Link>
