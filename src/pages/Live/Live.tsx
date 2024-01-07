@@ -40,7 +40,9 @@ const Live = () => {
                     ? filteredMatches.map((m) => (
                         <Row key={m.fixture.id} {...m} />
                     ))
-                    : 'there is no live matches'
+                    : searchTerm
+                        ? 'No matches found for your search'
+                        : 'There are no live matches'
                 }
             </div>
         </div>
