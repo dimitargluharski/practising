@@ -1,4 +1,4 @@
-type PanelProps = {
+interface PanelProps {
     title: string;
     children?: any
     button?: string
@@ -6,14 +6,14 @@ type PanelProps = {
 
 const Panel = ({ title, children }: PanelProps) => {
     return (
-        <div className="w-[300px] m-2 rounded-md">
-            <div className="bg-slate-400 p-2">
-                <span>
+        <div className="m-2 rounded-md bg-red">
+            <div className="bg-slate-400 p-2 text-slate-50">
+                <span className="uppercase">
                     {title}
                 </span>
             </div>
 
-            <div className="bg-slate-50">
+            <div className="bg-slate-50 p-2">
                 {children}
             </div>
         </div>
