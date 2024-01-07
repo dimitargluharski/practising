@@ -24,9 +24,9 @@ type Periods = {
 };
 
 type Venue = {
-    city?: string | undefined;
-    id?: number | undefined;
-    name?: string | undefined;
+    city?: string | null;
+    id?: number | null;
+    name?: string | null;
 };
 
 type League = {
@@ -65,6 +65,7 @@ type Status = {
 };
 
 type Fixtures = {
+    venue: any;
     id: number;
     date: string;
     timezone: string;
