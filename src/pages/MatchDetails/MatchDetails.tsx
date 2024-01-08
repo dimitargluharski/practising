@@ -61,7 +61,7 @@ const MatchDetails = () => {
                     <div className='mr-2'>
                         <GiWhistle />
                     </div>
-                    {match[0]?.fixture?.referee}
+                    {match[0]?.fixture?.referee !== null ? match[0]?.fixture?.referee : 'N/A'}
                 </div>
 
                 <div className='flex items-center'>
