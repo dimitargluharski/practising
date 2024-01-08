@@ -11,6 +11,7 @@ export interface Fixture {
     teams: Teams;
     timezone: string;
     fixture: Fixtures;
+    events: Events;
 }
 
 type Goals = {
@@ -70,4 +71,34 @@ type Fixtures = {
     date: string;
     timezone: string;
     status: Status;
+};
+
+type Events = {
+    assist: Assist;
+    comments: string | null;
+    player: Player;
+    team: Team;
+    time: Time;
+    type: string;
+};
+
+type Time = {
+    elapsed: number;
+    extran: number | null;
+};
+
+type Team = {
+    id: number;
+    name: string;
+    logo: number;
+};
+
+type Player = {
+    id: number;
+    name: string;
+};
+
+type Assist = {
+    id: number;
+    name: string;
 };
