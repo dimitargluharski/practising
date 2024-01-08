@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { MdOutlineStadium } from "react-icons/md";
+import { GiWhistle } from "react-icons/gi";
+import { MdOutlineCalendarMonth } from "react-icons/md";
+
 
 import Panel from '../../components/Panel/Panel.js';
 import * as APIfootball from '../../services/football.js'
@@ -11,12 +15,23 @@ import MatchEvents from '../../components/MatchEvents/MatchEvents.js';
 const MatchDetails = () => {
     const [match, setMatch] = useState<Fixture[]>([]);
     const { matchId } = useParams();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         APIfootball.getFixtureDetails(matchId).then((data: Fixture[]) => {
             setMatch(data);
-        }).catch(err => console.log(err));
+            setIsLoading(false);
+        }).catch(err => {
+            console.log(err);
+            setIsLoading(false);
+        });
     }, [matchId])
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    console.log(match)
 
     return (
         <div>
@@ -27,8 +42,35 @@ const MatchDetails = () => {
                 </Link>
             </div>
             <Panel title='details'>
-                {match[0]?.fixture?.venue?.name !== null ? match[0]?.fixture?.venue?.name : 'N/A'}
-                {/* league name */}
+
+                <div className='flex items-center'>
+                    <div className='mr-2'>
+                        <MdOutlineStadium />
+                    </div>
+
+                    <div className='mr-2'>
+                        {match[0]?.fixture?.venue?.name !== null ? match[0]?.fixture?.venue?.name : 'N/A'}
+                    </div>
+
+                    <div>
+                        {`${match[0]?.fixture?.venue?.city !== null ? `(${match[0]?.fixture?.venue?.city})` : 'N/A'}`}
+                    </div>
+                </div>
+
+                <div className='flex items-center'>
+                    <div className='mr-2'>
+                        <GiWhistle />
+                    </div>
+                    {match[0]?.fixture?.referee}
+                </div>
+
+                <div className='flex items-center'>
+                    <div className='mr-2'>
+                        <MdOutlineCalendarMonth />
+                    </div>
+                    {match[0]?.league.round} - {match[0]?.league.name}
+                </div>
+
             </Panel>
 
             <Panel title='match events'>

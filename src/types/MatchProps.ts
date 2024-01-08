@@ -2,7 +2,7 @@ export interface Fixture {
     id: number;
     date: string;
     periods: Periods; // ???
-    referee: string;
+    // referee: string;
     status: Status;
     timestamp: number;
     goals: Goals;
@@ -25,9 +25,9 @@ type Periods = {
 };
 
 type Venue = {
-    city?: string | null;
-    id?: number | null;
-    name?: string | null;
+    city: string | null;
+    id: number | null;
+    name: string | null;
 };
 
 type League = {
@@ -71,6 +71,7 @@ type Fixtures = {
     date: string;
     timezone: string;
     status: Status;
+    referee: string;
 };
 
 type Events = {
