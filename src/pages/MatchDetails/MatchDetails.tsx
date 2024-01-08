@@ -5,6 +5,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import Panel from '../../components/Panel/Panel.js';
 import * as APIfootball from '../../services/football.js'
 import { Fixture } from '../../types/MatchProps.js';
+import MatchEvents from '../../components/MatchEvents/MatchEvents.js';
 
 
 const MatchDetails = () => {
@@ -16,8 +17,6 @@ const MatchDetails = () => {
             setMatch(data);
         }).catch(err => console.log(err));
     }, [matchId])
-
-    console.log(match);
 
     return (
         <div>
@@ -32,8 +31,8 @@ const MatchDetails = () => {
                 {/* league name */}
             </Panel>
 
-            <Panel title='standinds'>
-                klasirane
+            <Panel title='match events'>
+                <MatchEvents match={match} />
             </Panel>
         </div>
     )
