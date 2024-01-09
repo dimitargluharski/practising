@@ -49,11 +49,11 @@ const MatchDetails = () => {
                     </div>
 
                     <div className='mr-2'>
-                        {match[0]?.fixture?.venue?.name !== null ? match[0]?.fixture?.venue?.name : 'N/A'}
+                        {match[0]?.fixture?.venue?.name !== null ? match[0]?.fixture?.venue?.name : 'unknown'}
                     </div>
 
                     <div>
-                        {`${match[0]?.fixture?.venue?.city !== null ? `(${match[0]?.fixture?.venue?.city})` : 'N/A'}`}
+                        {`${match[0]?.fixture?.venue?.city !== null ? `(${match[0]?.fixture?.venue?.city})` : 'unknown'}`}
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@ const MatchDetails = () => {
                     <div className='mr-2'>
                         <GiWhistle />
                     </div>
-                    {match[0]?.fixture?.referee !== null ? match[0]?.fixture?.referee : 'N/A'}
+                    {match[0]?.fixture?.referee !== null ? match[0]?.fixture?.referee : 'unknown'}
                 </div>
 
                 <div className='flex items-center'>
