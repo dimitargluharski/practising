@@ -28,12 +28,14 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                 return (
                     <div key={m.id} className="flex flex-col md:flex-row justify-between space-x-4">
                         <div className="w-full md:w-1/2">
-                            <h2>{homeTeamName} Events</h2>
+                            <div className="flex justify-center">
+                                <h2>{homeTeamName} Events</h2>
+                            </div>
                             {allEvents.map((event: Event) => {
                                 if (event.team.name === homeTeamName) {
                                     if (event.type === 'Goal') homeScore++;
                                     return (
-                                        <div key={event.time.elapsed} className="mb-2 flex items-center">
+                                        <div key={event.time.elapsed} className="mb-2 flex items-center italic">
                                             {event.type === 'Goal' && <IoFootballSharp className="mr-2" />}
                                             {event.type === 'Card' && <GiCardPlay className="mr-2" />}
                                             <p className="m-0">
@@ -48,12 +50,14 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                         </div>
 
                         <div className="w-full md:w-1/2">
-                            <h2>{awayTeamName} Events</h2>
+                            <div className="flex justify-center">
+                                <h2>{awayTeamName} Events</h2>
+                            </div>
                             {allEvents.map((event: Event) => {
                                 if (event.team.name === awayTeamName) {
                                     if (event.type === 'Goal') awayScore++;
                                     return (
-                                        <div key={event.time.elapsed} className="mb-2 flex items-center">
+                                        <div key={event.time.elapsed} className="mb-2 flex items-center italic">
                                             {event.type === 'Goal' && <IoFootballSharp className="mr-2" />}
                                             {event.type === 'Card' && <GiCardPlay className="mr-2" />}
                                             <p className="m-0">
@@ -69,7 +73,13 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                     </div>
                 );
             })}
+
+            {/* @TODO: Separate in component! */}
+            <div className="flex justify-center italic font-bold">
+                {match[0]?.goals.home} - {match[0]?.goals.away} ({match[0]?.fixture.status.elapsed}')
+            </div>
         </div>
+
     );
 };
 
