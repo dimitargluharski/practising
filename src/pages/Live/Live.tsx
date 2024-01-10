@@ -34,13 +34,8 @@ const Live = () => {
             });
         }
 
-        fetchMatches(); // Fetch matches immediately on component mount
+        fetchMatches();
 
-        const intervalId = setInterval(fetchMatches, 5 * 60 * 1000); // Fetch matches every 5 minutes
-
-        return () => {
-            clearInterval(intervalId); // Clear the interval when the component unmounts
-        }
     }, []);
 
     if (isLoading) {
