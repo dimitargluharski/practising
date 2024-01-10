@@ -3,6 +3,7 @@ import { GiCardPlay } from "react-icons/gi";
 import { Fixture, Event } from "../../types/MatchProps";
 import { getEventDetail } from '../../utils/eventUtils.ts';
 import { FaArrowsRotate } from "react-icons/fa6";
+import { v4 as uuidv4 } from 'uuid';
 
 interface MatchEventsProps {
     match: Fixture[];
@@ -27,16 +28,16 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                 allEvents.sort((a, b) => a.time.elapsed - b.time.elapsed);
 
                 return (
-                    <div key={m.id} className="flex flex-col md:flex-row justify-between space-x-4">
+                    <div key={uuidv4()} className="flex flex-col md:flex-row justify-between space-x-4">
                         <div className="w-full md:w-1/2">
                             <div className="flex justify-center">
                                 <h2>{homeTeamName} Events</h2>
                             </div>
-                            {allEvents.map((event: Event) => {
+                            {allEvents.map((event: Event, index: number) => {
                                 if (event.team.name === homeTeamName) {
                                     if (event.type === 'Goal') homeScore++;
                                     return (
-                                        <div key={event.time.elapsed} className="mb-2 flex items-center italic">
+                                        <div key={uuidv4()} className="mb-2 flex items-center italic">
                                             {event.type === 'Goal' && <IoFootballSharp className="mr-2" />}
                                             {event.type === 'Card' && <GiCardPlay className="mr-2" />}
                                             {event.type === 'subst' && <FaArrowsRotate className="mr-2" />}
@@ -57,7 +58,7 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                                 if (event.team.name === awayTeamName) {
                                     if (event.type === 'Goal') awayScore++;
                                     return (
-                                        <div key={event.time.elapsed} className="mb-2 flex items-center italic">
+                                        <div key={uuidv4()} className="mb-2 flex items-center italic">
                                             {event.type === 'Goal' && <IoFootballSharp className="mr-2" />}
                                             {event.type === 'Card' && <GiCardPlay className="mr-2" />}
                                             {event.type === 'subst' && <FaArrowsRotate className="mr-2" />}
