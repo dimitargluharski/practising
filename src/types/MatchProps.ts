@@ -12,6 +12,7 @@ export interface Fixture {
     timezone: string;
     fixture: Fixtures;
     events: Events;
+    lineups: Lineups;
 }
 
 type Goals = {
@@ -88,18 +89,47 @@ type Time = {
     extran: number | null;
 };
 
-type Team = {
+// type Team = {
+//     id: number;
+//     name: string;
+//     logo: number;
+// };
+
+type Assist = {
     id: number;
     name: string;
-    logo: number;
 };
 
 type Player = {
     id: number;
     name: string;
+    number: number;
+    pos: string;
+    grid: string | null;
 };
 
-type Assist = {
+type Coach = {
     id: number;
     name: string;
+    photo: string;
+};
+
+type Team = {
+    colors: Colors;
+    id: number;
+    logo: string;
+    name: string;
+};
+
+type Lineups = {
+    coach: Coach;
+    formation: string;
+    startXI: Player[];
+    substitutes: Player[];
+    team: Team;
+};
+
+type Colors = {
+    player: string;
+    goolkeeper: string;
 };

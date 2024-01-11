@@ -29,3 +29,20 @@ export const getFixtureDetails = async (matchId) => {
         console.log(error)
     }
 }
+
+export const getMatchLineups = async (matchId) => {
+    try {
+        const response = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures/lineups?fixture=${matchId}`, {
+            headers: {
+                "X-RapidAPI-Key": `${KEY}`,
+                "X-RapidAPI-Host": `${API_HOST}`,
+            },
+        });
+        const data = await response.json();
+        console.log('data');
+        return data.response;
+
+    } catch (error) {
+        console.log(error)
+    }
+}
