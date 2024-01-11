@@ -4,12 +4,11 @@ import { Fixture, Event } from "../../types/MatchProps";
 import { getEventDetail } from '../../utils/eventUtils.ts';
 import { FaArrowsRotate } from "react-icons/fa6";
 import { v4 as uuidv4 } from 'uuid';
+import { ImCancelCircle } from "react-icons/im";
 
 interface MatchEventsProps {
     match: Fixture[];
 }
-
-// @TODO: Separate in Home/Away Team Events Component!
 
 const MatchEvents = ({ match }: MatchEventsProps) => {
     return (
@@ -21,10 +20,8 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                 let homeScore = 0;
                 let awayScore = 0;
 
-                // Combine home and away events into a single array
                 const allEvents = [...m.events];
 
-                // Sort events by elapsed time
                 allEvents.sort((a, b) => a.time.elapsed - b.time.elapsed);
 
                 return (
@@ -33,7 +30,7 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                             <div className="flex justify-center">
                                 <h2>{homeTeamName} Events</h2>
                             </div>
-                            {allEvents.map((event: Event, index: number) => {
+                            {allEvents.map((event: Event) => {
                                 if (event.team.name === homeTeamName) {
                                     if (event.type === 'Goal') homeScore++;
                                     return (
@@ -41,6 +38,7 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                                             {event.type === 'Goal' && <IoFootballSharp className="mr-2" />}
                                             {event.type === 'Card' && <GiCardPlay className="mr-2" />}
                                             {event.type === 'subst' && <FaArrowsRotate className="mr-2" />}
+                                            {event.type === 'GoalDisallowed' && <><IoFootballSharp className="mr-2" /><ImCancelCircle className="mr-2" /></>}
                                             <p className="m-0">
                                                 {event.time.elapsed}' - {event.type === 'subst' ? `${event.assist.name} out, ${event.player.name} in-game` : `${getEventDetail(event)} by ${event.player.name ? event.player.name : 'unknown player'}`}
                                             </p>
@@ -62,6 +60,7 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
                                             {event.type === 'Goal' && <IoFootballSharp className="mr-2" />}
                                             {event.type === 'Card' && <GiCardPlay className="mr-2" />}
                                             {event.type === 'subst' && <FaArrowsRotate className="mr-2" />}
+                                            {event.type === 'GoalDisallowed' && <><IoFootballSharp className="mr-2" /><ImCancelCircle className="mr-2" /></>}
                                             <p className="m-0">
                                                 {event.time.elapsed}' - {event.type === 'subst' ? `${event.assist.name} out, ${event.player.name} in-game` : `${getEventDetail(event)} by ${event.player.name ? event.player.name : 'unknown player'}`}
                                             </p>
