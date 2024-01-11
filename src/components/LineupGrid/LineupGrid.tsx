@@ -80,53 +80,57 @@ const LineupGrid = ({ lineups }: { lineups: Lineups[] }) => {
 
     return (
         <div className="flex justify-between" style={{
-            background: 'linear-gradient(to right, #98FB98, #32CD32)',
+            // background: 'linear-gradient(to right, #98FB98, #32CD32)',
             maxHeight: '100vh',
             overflowY: 'auto'
         }}>
-            {lineups.map((lineup, index) => {
-                const goalkeeper = lineup.startXI.find(player => player.player.position === 'GK');
-                const outfieldPlayers = lineup.startXI.filter(player => player.player.position !== 'GK');
-                return (
-                    <div key={index} className="flex-1 mx-2" style={{ height: '500px' }}>
-                        <h2 className="font-bold">Coach: {lineup.coach.name}</h2>
-                        <p>Formation: {lineup.formation}</p>
-                        <h3 className="font-semibold">Starting XI:</h3>
-                        <div className="flex flex-col items-center">
-                            {goalkeeper && (
-                                <div className="relative group m-2">
-                                    <FaTshirt style={{
-                                        color: lineup.team.colors?.goalkeeper?.primary ? `#${lineup.team.colors.goalkeeper.primary}` : '#000',
-                                        position: 'relative',
-                                        zIndex: 1,
-                                        fontSize: '30px'
-                                    }} />
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: '50%',
-                                        left: '50%',
-                                        transform: 'translate(-50%, -50%)',
-                                        zIndex: 2,
-                                        color: lineup.team.colors?.goalkeeper?.number ? `#${lineup.team.colors.goalkeeper.number}` : '#000'
-                                    }}>
-                                        {goalkeeper.player.number}
+            {lineups.length > 0 ? (
+                lineups.map((lineup, index) => {
+                    const goalkeeper = lineup.startXI.find(player => player.player.position === 'GK');
+                    const outfieldPlayers = lineup.startXI.filter(player => player.player.position !== 'GK');
+                    return (
+                        <div key={index} className="flex-1 mx-2" style={{ height: '500px' }}>
+                            <h2 className="font-bold">Coach: {lineup.coach.name}</h2>
+                            <p>Formation: {lineup.formation}</p>
+                            <h3 className="font-semibold">Starting XI:</h3>
+                            <div className="flex flex-col items-center">
+                                {goalkeeper && (
+                                    <div className="relative group m-2">
+                                        <FaTshirt style={{
+                                            color: lineup.team.colors?.goalkeeper?.primary ? `#${lineup.team.colors.goalkeeper.primary}` : '#000',
+                                            position: 'relative',
+                                            zIndex: 1,
+                                            fontSize: '30px'
+                                        }} />
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            transform: 'translate(-50%, -50%)',
+                                            zIndex: 2,
+                                            color: lineup.team.colors?.goalkeeper?.number ? `#${lineup.team.colors.goalkeeper.number}` : '#000'
+                                        }}>
+                                            {goalkeeper.player.number}
+                                        </div>
+                                        <div className="flex justify-center">
+                                            <div className="w-8 text-xs text-center mt-1">{goalkeeper.player.name.split(' ').pop()}</div>
+                                        </div>
                                     </div>
-                                    <div className="flex justify-center">
-                                        <div className="w-8 text-xs text-center mt-1">{goalkeeper.player.name.split(' ').pop()}</div>
-                                    </div>
-                                </div>
-                            )}
-                            {generateFormation(lineup.formation, outfieldPlayers, lineup.team.colors)}
+                                )}
+                                {generateFormation(lineup.formation, outfieldPlayers, lineup.team.colors)}
+                            </div>
+                            <div>
+                                <h3 className="font-semibold">Substitutes:</h3>
+                                {lineup.substitutes.map((player, playerIndex) => (
+                                    <p key={playerIndex} className="text-sm">{player.player.number}. {player.player.name}</p>
+                                ))}
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="font-semibold">Substitutes:</h3>
-                            {lineup.substitutes.map((player, playerIndex) => (
-                                <p key={playerIndex} className="text-sm">{player.player.number}. {player.player.name}</p>
-                            ))}
-                        </div>
-                    </div>
-                );
-            })}
+                    );
+                })
+            ) : (
+                <p>No lineups available.</p>
+            )}
         </div>
     )
 }
