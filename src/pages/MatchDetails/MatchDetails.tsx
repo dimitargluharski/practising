@@ -10,6 +10,7 @@ import Panel from '../../components/Panel/Panel.js';
 import * as APIfootball from '../../services/football.js'
 import { Fixture } from '../../types/MatchProps.js';
 import MatchEvents from '../../components/MatchEvents/MatchEvents.js';
+import LineupGrid from '../../components/LineupGrid/LineupGrid.js';
 
 
 const MatchDetails = () => {
@@ -75,6 +76,10 @@ const MatchDetails = () => {
 
             <Panel title='match events'>
                 <MatchEvents match={match} />
+            </Panel>
+
+            <Panel title='lineups'>
+                <LineupGrid lineups={match[0]?.lineups} />
             </Panel>
         </div>
     )

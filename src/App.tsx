@@ -10,7 +10,7 @@ import MatchDetails from './pages/MatchDetails/MatchDetails';
 function App() {
   return (
     <div className='bg-slate-950 w-full h-full fixed'>
-      <div className='w-[720px] m-auto bg-slate-500 p-2 mt-5 rounded-md'>
+      <div className='w-[720px] m-auto bg-slate-500 p-2 mt-5 rounded-md' style={{ overflowY: 'scroll', height: '100vh' }}>
         <Routes>
           {/* <Route path='/' element={<Home />} /> */}
           <Route path='/' element={<Live />} />
