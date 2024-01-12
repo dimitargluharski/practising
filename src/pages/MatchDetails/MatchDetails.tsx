@@ -11,6 +11,7 @@ import * as APIfootball from '../../services/football.js'
 import { Fixture } from '../../types/MatchProps.js';
 import MatchEvents from '../../components/MatchEvents/MatchEvents.js';
 import LineupGrid from '../../components/LineupGrid/LineupGrid.js';
+import Prediction from '../../components/Prediction/Prediction.js';
 
 
 const MatchDetails = () => {
@@ -32,7 +33,7 @@ const MatchDetails = () => {
         return <div>Loading...</div>;
     }
 
-    console.log(match)
+    // console.log(match)
 
     return (
         <div>
@@ -72,6 +73,10 @@ const MatchDetails = () => {
                     {match[0]?.league.round} - {match[0]?.league.name}
                 </div>
 
+            </Panel>
+
+            <Panel title='match predictions'>
+                <Prediction fixture={match[0]?.fixture.id} />
             </Panel>
 
             <Panel title='match events'>
