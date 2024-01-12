@@ -46,3 +46,20 @@ export const getMatchLineups = async (matchId) => {
         console.log(error)
     }
 }
+
+export const getMatchPrediction = async (matchId) => {
+    try {
+        const response = await fetch(`https://v3.football.api-sports.io/predictions?fixture=${matchId}`, {
+            headers: {
+                "X-RapidAPI-Key": `${KEY}`,
+                "X-RapidAPI-Host": `${API_HOST}`,
+            },
+        });
+        const data = await response.json();
+        // console.log('data', data);
+        return data.response;
+
+    } catch (error) {
+        console.log(error)
+    }
+}
