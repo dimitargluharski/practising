@@ -12,6 +12,7 @@ import { Fixture } from '../../types/MatchProps.js';
 import MatchEvents from '../../components/MatchEvents/MatchEvents.js';
 import LineupGrid from '../../components/LineupGrid/LineupGrid.js';
 import Prediction from '../../components/Prediction/Prediction.js';
+import Weather from '../../components/Weather/Weather.js';
 
 
 const MatchDetails = () => {
@@ -73,6 +74,9 @@ const MatchDetails = () => {
                     {match[0]?.league.round} - {match[0]?.league.name}
                 </div>
 
+                <div>
+                    <Weather city={match[0]?.fixture.venue.city || 'N/A'} />
+                </div>
             </Panel>
 
             <Panel title='match predictions'>
