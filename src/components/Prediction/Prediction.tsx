@@ -41,7 +41,7 @@ const Prediction = ({ fixture }: PredictionProp) => {
 
     useEffect(() => {
         footballService.getMatchPrediction(fixture).then((data: any) => {
-            console.log(data);
+            // console.log(data);
             setMatch(data);
             setLoading(false);
         }).catch((err) => {
