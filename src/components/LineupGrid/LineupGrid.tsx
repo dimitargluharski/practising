@@ -46,11 +46,11 @@ const LineupGrid = ({ lineups }: { lineups: Lineups[] }) => {
         let formationArray = ('1-' + formation).split('-').map(Number);
         let playerIndex = 0;
         return formationArray.map((line, i) => {
-            let linePlayers = players.slice(playerIndex, playerIndex + line);
+            let linePlayers = players?.slice(playerIndex, playerIndex + line);
             playerIndex += line;
             return (
                 <div key={i} className="flex justify-around w-full">
-                    {linePlayers.map((player, playerIndex) => (
+                    {linePlayers?.map((player, playerIndex) => (
                         <div key={playerIndex} className="relative group m-2">
                             <FaTshirt style={{
                                 color: teamColors?.player?.primary ? `#${teamColors.player.primary}` : '#000',
@@ -79,11 +79,7 @@ const LineupGrid = ({ lineups }: { lineups: Lineups[] }) => {
     };
 
     return (
-        <div className="flex justify-between" style={{
-            // background: 'linear-gradient(to right, #98FB98, #32CD32)',
-            maxHeight: '100vh',
-            overflowY: 'auto'
-        }}>
+        <div className="flex justify-between" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
             {lineups.length > 0 ? (
                 lineups.map((lineup, index) => {
                     const goalkeeper = lineup.startXI.find(player => player.player.position === 'GK');
@@ -121,9 +117,13 @@ const LineupGrid = ({ lineups }: { lineups: Lineups[] }) => {
                             </div>
                             <div>
                                 <h3 className="font-semibold">Substitutes:</h3>
-                                {lineup.substitutes.map((player, playerIndex) => (
-                                    <p key={playerIndex} className="text-sm">{player.player.number}. {player.player.name}</p>
-                                ))}
+                                {lineup.substitutes && lineup.substitutes.length > 0 ? (
+                                    lineup.substitutes.map((player, playerIndex) => (
+                                        <p key={playerIndex} className="text-sm">{player.player.number}. {player.player.name}</p>
+                                    ))
+                                ) : (
+                                    <p>There is no info about substitutes.</p>
+                                )}
                             </div>
                         </div>
                     );
@@ -132,7 +132,7 @@ const LineupGrid = ({ lineups }: { lineups: Lineups[] }) => {
                 <p>No lineups available.</p>
             )}
         </div>
-    )
-}
+    );
+};
 
 export default LineupGrid;
