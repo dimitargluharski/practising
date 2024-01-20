@@ -6,7 +6,7 @@ import TeamName from "../TeamName/TeamName";
 
 const Row = ({ fixture, teams, goals }: Fixture) => {
     return (
-        <div className="flex items-center shadow-lg rounded-md p-2 my-1 w-full bg-slate-400 hover:scale-105">
+        <div className="flex items-center shadow-lg rounded-md p-2 my-1 w-full bg-slate-300 hover:scale-105">
             <div className="mx-5">
                 <Date date={fixture.date} status={fixture.status} />
             </div>

@@ -7,7 +7,6 @@ import Row from '../../components/Row/Row.js';
 import InputField from '../../components/InputField/InputField.js';
 import Pagination from '../../components/Pagination/Pagination.js';
 
-
 const Live = () => {
     const [matches, setMatches] = useState<Fixture[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -60,7 +59,7 @@ const Live = () => {
         <div className='flex flex-col m-auto w-full rounded-md'>
             <InputField onSearchTermChange={onSearchTermChange} />
 
-            <h1>Live: {filteredMatches.length}</h1>
+            <h1 className='text-white'>Live: {filteredMatches.length}</h1>
 
             <div className='w-full rounded-md'>
                 {filteredMatches.length > 0
