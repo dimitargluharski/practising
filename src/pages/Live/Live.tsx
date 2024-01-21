@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
+// @ts-ignore
 import * as APIfootball from '../../services/football.js'
 import { Fixture } from '../../types/MatchProps.js';
 import Row from '../../components/Row/Row.js';

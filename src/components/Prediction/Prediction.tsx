@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+// @ts-ignore
 import * as footballService from '../../services/football.js';
 
 interface PredictionProp {

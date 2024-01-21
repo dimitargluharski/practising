@@ -1,8 +1,10 @@
 import { IoFootballSharp } from "react-icons/io5";
 import { GiCardPlay } from "react-icons/gi";
+// @ts-ignore
 import { Fixture, Event } from "../../types/MatchProps";
 import { getEventDetail } from '../../utils/eventUtils.ts';
 import { FaArrowsRotate } from "react-icons/fa6";
+// @ts-ignore
 import { v4 as uuidv4 } from 'uuid';
 import { ImCancelCircle } from "react-icons/im";
 
@@ -19,7 +21,7 @@ const MatchEvents = ({ match }: MatchEventsProps) => {
 
                 let homeScore = 0;
                 let awayScore = 0;
-
+                // @ts-ignore
                 const allEvents = [...m.events];
 
                 allEvents.sort((a, b) => a.time.elapsed - b.time.elapsed);
