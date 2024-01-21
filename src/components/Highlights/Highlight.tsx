@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import moment from 'moment';
 
 // @ts-ignore
-import * as ScoreBathService from '../../services/ScoreBat';
+import * as ScoreBatService from '../../services/scoreBat.js';
 
 interface VideoProps {
     competition: string;
@@ -23,7 +23,7 @@ const Highlight = () => {
 
     useEffect(() => {
         setLoading(true);
-        ScoreBathService.getHighlights().then((data: any) => {
+        ScoreBatService.getHighlights().then((data: any) => {
             setVideos(prevVideos => [...prevVideos, ...data.slice((page - 1) * 15, page * 15)]);
             setLoading(false);
         }).catch((err: string) => {
