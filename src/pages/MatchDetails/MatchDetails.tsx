@@ -5,8 +5,8 @@ import { MdOutlineStadium } from "react-icons/md";
 import { GiWhistle } from "react-icons/gi";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 
-
 import Panel from '../../components/Panel/Panel.js';
+// @ts-ignore
 import * as APIfootball from '../../services/football.js'
 import { Fixture } from '../../types/MatchProps.js';
 import MatchEvents from '../../components/MatchEvents/MatchEvents.js';
@@ -24,6 +24,7 @@ const MatchDetails = () => {
         APIfootball.getFixtureDetails(matchId).then((data: Fixture[]) => {
             setMatch(data);
             setIsLoading(false);
+            // @ts-ignore
         }).catch(err => {
             console.log(err);
             setIsLoading(false);
@@ -75,6 +76,7 @@ const MatchDetails = () => {
                 </div>
 
                 <div>
+                    {/* @ts-ignore */}
                     <Weather city={match[0]?.fixture.venue.city || 'N/A'} />
                 </div>
             </Panel>
@@ -88,6 +90,7 @@ const MatchDetails = () => {
             </Panel>
 
             <Panel title='lineups'>
+                {/* @ts-ignore */}
                 <LineupGrid lineups={match[0]?.lineups} />
             </Panel>
         </div>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 
-import * as ScoreBathService from '../../services/ScoreBat.js';
+// @ts-ignore
+import * as ScoreBathService from '../../services/ScoreBat';
 
 interface VideoProps {
     competition: string;
@@ -56,6 +57,7 @@ const Highlight = () => {
                 Videos: {videos.length}
             </div>
             {videos.map((v, i) => (
+                // @ts-ignore
                 <div key={i} onClick={() => openModal(v.videos)} className='flex items-center m-1 shadow-lg rounded-lg p-2 bg-slate-300 hover:bg-slate-900 hover:text-white'>
                     <div className='w-[25px] h-[25px]'>
                         <img src={v.thumbnail} className='w-full h-full' />
