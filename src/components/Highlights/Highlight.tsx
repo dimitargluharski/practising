@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import * as ScoreBathService from '../../services/ScoreBat.js';

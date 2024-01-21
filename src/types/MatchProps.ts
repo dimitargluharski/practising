@@ -13,7 +13,7 @@ export interface Fixture {
     fixture: Fixtures;
     events: Events;
     lineups: Lineups;
-    location: any:
+    location: any;
     current: any;
 }
 
