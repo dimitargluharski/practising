@@ -44,6 +44,7 @@ const Prediction = ({ fixture }: PredictionProp) => {
             // console.log(data);
             setMatch(data);
             setLoading(false);
+            // @ts-ignore
         }).catch((err) => {
             console.log('err', err)
         })
@@ -55,7 +56,9 @@ const Prediction = ({ fixture }: PredictionProp) => {
 
     return (
         <div>
+            {/* @ts-ignore */}
             {match && match.length > 0 && match[0].predictions?.winner?.name} -
+            {/* @ts-ignore */}
             {match && match.length > 0 && match[0].predictions?.winner?.comment !== null ? match[0].predictions?.winner?.comment : ' N/A'}
         </div>
     )
