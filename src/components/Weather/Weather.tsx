@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { TiWeatherCloudy } from "react-icons/ti";
 
+// @ts-ignore
 import * as WeatherService from '../../services/weather.js';
 
 interface WeatherProps {
