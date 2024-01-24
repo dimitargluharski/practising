@@ -1,5 +1,3 @@
-// Now you can use InputField in this module
-
 interface InputFieldProps {
     onSearchTermChange: (searchTerm: string) => void;
 }
