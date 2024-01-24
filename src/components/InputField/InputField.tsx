@@ -8,7 +8,7 @@ const InputField = ({ onSearchTermChange }: InputFieldProps) => {
     }
 
     return (
-        <input name="searchTerm" onChange={onChange} className="p-2 mt-2 mb-1 shadow-md rounded-md" placeholder="Search..." />
+        <input name="searchTerm" onChange={onChange} className="p-2 mt-2 mb-1 shadow-sm rounded-md focus:shadow-xl focus:scale-105 transition-all ease-linear outline-none" placeholder="Search..." />
     )
 }
 
