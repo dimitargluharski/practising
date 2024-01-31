@@ -45,6 +45,7 @@ const MatchDetails = () => {
                     <span>Go Back</span>
                 </Link>
             </div>
+
             <Panel title='details'>
 
                 <div className='flex items-center'>
