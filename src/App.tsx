@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 
-import TV from './pages/TV/TV';
 import Live from './pages/Live/Live';
 import MatchDetails from './pages/MatchDetails/MatchDetails';
+import Stream from './components/Stream/Stream';
 // import Highlight from './components/Highlights/Highlight';
 
 function App() {
@@ -13,7 +13,8 @@ function App() {
         <div className='w-full p-2 flex items-center justify-center min-h-screen'>
           <Routes>
             <Route path='/' element={<Live />} />
-            <Route path='/tv' element={<TV />} />
+            <Route path='/streams' element={<Stream />} />
+            <Route path='*' element={<div>404...</div>} />
             <Route path="/match-details/:matchId" element={<MatchDetails />} />
           </Routes>
         </div>
