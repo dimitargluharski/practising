@@ -48,7 +48,9 @@ const Stream = () => {
 
 
     const filteredMatches = high.filter(match =>
+        // @ts-ignore
         match.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        // @ts-ignore
         match.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
