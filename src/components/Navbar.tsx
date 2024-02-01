@@ -1,8 +1,8 @@
 import { useLocation, NavLink } from 'react-router-dom';
-import { MdDashboard } from "react-icons/md";
+// import { MdDashboard } from "react-icons/md";
 import { BsFillDisplayFill } from "react-icons/bs"; // TV icon
 import { GiSoccerBall } from "react-icons/gi"; // Soccer ball icon
-import { MdOndemandVideo } from "react-icons/md"; // Video icon
+// import { MdOndemandVideo } from "react-icons/md"; // Video icon
 
 const NavItem = ({ to, children }: any) => {
     const location = useLocation();
