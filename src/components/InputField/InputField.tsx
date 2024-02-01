@@ -1,5 +1,6 @@
 interface InputFieldProps {
     onSearchTermChange: (searchTerm: string) => void;
+    placeholder?: string;
 }
 
 const InputField = ({ onSearchTermChange }: InputFieldProps) => {

@@ -58,7 +58,7 @@ const Live = () => {
 
     return (
         <div className='flex flex-col m-auto w-full rounded-md bg-slate-300 p-2'>
-            <InputField onSearchTermChange={onSearchTermChange} />
+            <InputField onSearchTermChange={onSearchTermChange} placeholder='Search...' />
 
             <h1 className='p-1'>Live: {filteredMatches.length}</h1>
 

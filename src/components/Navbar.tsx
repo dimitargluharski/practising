@@ -11,7 +11,7 @@ const NavItem = ({ to, children }: any) => {
     return (
         <NavLink
             to={to}
-            className={`flex justify-center items-center font-semibold rounded-md text-4xl p-2 mx-5 ${isActive ? 'bg-red-600 p-2 mx-5 text-slate-50' : ''}`}
+            className={`flex justify-center items-center font-semibold rounded-md text-4xl  m-3 ${isActive ? 'bg-red-600 p-2 mx-5 text-slate-50' : ''}`}
         >
             {children}
         </NavLink>
@@ -20,21 +20,13 @@ const NavItem = ({ to, children }: any) => {
 
 const Navbar = () => {
     return (
-        <nav className='flex flex-col justify-center bg-slate-300 h-screen'>
+        <nav className='flex flex-col justify-center bg-slate-300 mr-4 absolute left-80 rounded-md'>
             <NavItem to="/" title="dashboard">
-                <MdDashboard />
-            </NavItem>
-
-            <NavItem to="/tv" title="tv">
-                <BsFillDisplayFill />
-            </NavItem>
-
-            <NavItem to="/live" title="live">
                 <GiSoccerBall />
             </NavItem>
 
             <NavItem to="/videos" title="videos">
-                <MdOndemandVideo />
+                <BsFillDisplayFill />
             </NavItem>
         </nav >
     )
