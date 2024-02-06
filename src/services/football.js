@@ -11,6 +11,31 @@ export const getLiveMatches = async () => {
 
     const json = await res.json();
     console.log('res', json.response)
+
+    // @TODO: use this when fetch all available matches (including live, upcoming, TBC and etc)
+    // let newArray = [];
+    // let league = {
+    //     id: '',
+    //     countryName: '',
+    //     countryFlag: '',
+    //     matches: []
+    // };
+
+    // json.response.forEach((match) => {
+    //     if (league.id !== match.league.id) {
+    //         league = {
+    //             id: match.league.id,
+    //             countryLeageName: match.league.name,
+    //             countryName: match.league.country,
+    //             countryFlag: match.league.flag,
+    //             matches: []
+    //         };
+    //         newArray.push(league);
+    //     }
+    //     league.matches.push(match);
+    // });
+
+    // console.log(newArray)
     return json.response;
 };
 
