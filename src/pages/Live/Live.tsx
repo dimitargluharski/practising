@@ -42,6 +42,7 @@ const Live = () => {
 
     function sortLiveMatchesByTime() {
         const sortedMatches = [...matches].sort((a, b) => {
+            // @ts-ignore
             return a.fixture.status.elapsed - b.fixture.status.elapsed;
         });
 
