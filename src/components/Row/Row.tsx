@@ -3,10 +3,12 @@ import Date from "../Date/Date";
 import TeamLogo from "../TeamLogo/TeamLogo";
 import TeamName from "../TeamName/TeamName";
 
+import { FaChevronRight } from "react-icons/fa";
+
 
 const Row = ({ fixture, teams, goals }: Fixture) => {
     return (
-        <div className="flex items-center shadow-lg rounded-md p-2 my-1 w-full bg-slate-400 hover:scale-105">
+        <div className="flex items-center shadow-lg relative rounded-md p-2 my-1 w-full bg-slate-600 text-white hover:bg-slate-900 hover:scale-105 transition-all ease-linear">
             <div className="mx-5">
                 <Date date={fixture.date} status={fixture.status} />
             </div>
@@ -27,6 +29,10 @@ const Row = ({ fixture, teams, goals }: Fixture) => {
                     <TeamLogo logoUrl={teams.away.logo} />
                     <TeamName name={teams.away.name} />
                 </div>
+            </div>
+
+            <div className="absolute right-5">
+                <FaChevronRight />
             </div>
         </div>
     );

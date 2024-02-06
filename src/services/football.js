@@ -10,6 +10,7 @@ export const getLiveMatches = async () => {
     });
 
     const json = await res.json();
+    console.log('res', json.response)
     return json.response;
 };
 

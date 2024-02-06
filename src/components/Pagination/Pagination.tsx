@@ -17,7 +17,7 @@ const Pagination = ({ totalMatches, matchesPerPage, setCurrentPage, currentPage 
             {pages.map((page, index) => (
                 <button key={index}
                     onClick={() => setCurrentPage(page)}
-                    className={`px-1 mx-1 rounded-md ${page === currentPage ? 'bg-red-500' : ''}`}>{page}</button>
+                    className={`px-2 mx-1 rounded-md ${page === currentPage ? 'bg-red-500 text-white' : ''}`}>{page}</button>
             ))}
         </div>
     )

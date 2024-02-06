@@ -1,23 +1,27 @@
 import { Route, Routes } from 'react-router-dom';
 
-// import Home from './pages/Home/Home';
-import TV from './pages/TV/TV';
 import Live from './pages/Live/Live';
-import Videos from './pages/Videos/Videos';
-// import Navbar from './components/Navbar';
 import MatchDetails from './pages/MatchDetails/MatchDetails';
+import Stream from './components/Stream/Stream';
+import Navbar from './components/Navbar';
+// import Highlight from './components/Highlights/Highlight';
 
 function App() {
   return (
-    <div className='bg-slate-950 w-full h-full fixed'>
-      <div className='w-[720px] m-auto bg-slate-500 p-2 mt-5 rounded-md' style={{ overflowY: 'scroll', height: '100vh' }}>
-        <Routes>
-          {/* <Route path='/' element={<Home />} /> */}
-          <Route path='/' element={<Live />} />
-          <Route path='/tv' element={<TV />} />
-          <Route path="/match-details/:matchId" element={<MatchDetails />} />
-          <Route path='/videos' element={<Videos />} />
-        </Routes>
+    <div className='bg-slate-200 w-full h-[100%] flex justify-center'>
+      <div className='w-[1024px] h-[100vh]'>
+        {/* <div className='flex flex-col bg-slate-300 p-2 mr-2 rounded-md'> */}
+
+        <div className='w-full p-2 flex items-center justify-center min-h-screen'>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<Live />} />
+            <Route path='/videos' element={<Stream />} />
+            <Route path='*' element={<div>404...</div>} />
+            <Route path="/match-details/:matchId" element={<MatchDetails />} />
+          </Routes>
+        </div>
+        {/* </div> */}
       </div>
     </div>
   )
