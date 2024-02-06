@@ -8,23 +8,22 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className='bg-slate-200 w-full h-[100%] flex justify-center'>
-      <div className='w-[1024px] h-[100vh]'>
-        {/* <div className='flex flex-col bg-slate-300 p-2 mr-2 rounded-md'> */}
-
-        <div className='w-full p-2 flex items-center justify-center min-h-screen'>
-          <Navbar />
-          <Routes>
-            <Route path='/' element={<Live />} />
-            <Route path='/videos' element={<Stream />} />
-            <Route path='*' element={<div>404...</div>} />
-            <Route path="/match-details/:matchId" element={<MatchDetails />} />
-          </Routes>
-        </div>
-        {/* </div> */}
+    <div className="bg-slate-200 w-full h-full flex">
+      <div className="fixed top-0 left-0 w-[250px] h-screen bg-slate-300 z-10">
+        <Navbar />
       </div>
+
+      <div className="flex-1 p-2 ml-[250px] h-screen mx-auto">
+        <Routes>
+          <Route path='/' element={<Live />} />
+          <Route path='/videos' element={<Stream />} />
+          <Route path="/match-details/:matchId" element={<MatchDetails />} />
+          <Route path='*' element={<div>404...</div>} />
+        </Routes>
+      </div>
+
     </div>
-  )
+  );
 }
 
 export default App;
