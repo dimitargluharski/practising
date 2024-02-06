@@ -1,4 +1,4 @@
-const KEY = '443bc4cec33e610efcf112f0c916db37'; // not good practice to show the key, move it in .env file later
+const KEY = '0994604109a6e8c02639fc02913eb96e'; // not good practice to show the key, move it in .env file later
 const API_HOST = 'v3.football.api-sports.io';
 
 export const getLiveMatches = async () => {
