@@ -1,7 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-
-// @ts-ignore
 import * as APIfootball from '../../services/football.js'
 import { Fixture } from '../../types/MatchProps.js';
 import Row from '../../components/Row/Row.js';
@@ -36,14 +34,20 @@ const Live = () => {
 
         fetchMatches();
 
+        const savedMatches = localStorage.getItem('sortedMatches');
+        if (savedMatches) {
+            setMatches(JSON.parse(savedMatches));
+        }
+
     }, []);
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
+    function sortLiveMatchesByTime() {
+        const sortedMatches = [...matches].sort((a: any, b: any) => {
+            return a.fixture.status.elapsed - b.fixture.status.elapsed;
+        });
 
-    if (error) {
-        return <div>{error}</div>
+        localStorage.setItem('sortedMatches', JSON.stringify(sortedMatches));
+        setMatches(sortedMatches);
     }
 
     const filteredMatches = matches.filter(match =>
@@ -55,12 +59,12 @@ const Live = () => {
     const firstPageIndex = lastPageIndex - matchesPerPage;
     const currentSlicedPage = filteredMatches.slice(firstPageIndex, lastPageIndex);
 
-    function sortLiveMatchesByTime() {
-        const sortedMatches = [...filteredMatches].sort((a: any, b: any) => {
-            return a.fixture.status.elapsed - b.fixture.status.elapsed;
-        });
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
 
-        setMatches(sortedMatches);
+    if (error) {
+        return <div>{error}</div>
     }
 
     return (
@@ -69,13 +73,10 @@ const Live = () => {
 
             <div className='flex justify-between items-center'>
                 <MatchFilterPanel
+                    matchesLength={matches.length}
                     sortLiveMatchesByTime={sortLiveMatchesByTime}
                 />
-
-                <h1 className='text-white'>Live: {filteredMatches.length}</h1>
             </div>
-        
-            <h1 className='p-1'>Live: {filteredMatches.length}</h1>
 
             <div className='w-full rounded-md'>
                 {filteredMatches.length > 0
