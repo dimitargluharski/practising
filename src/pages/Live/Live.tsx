@@ -7,6 +7,7 @@ import { Fixture } from '../../types/MatchProps.js';
 import Row from '../../components/Row/Row.js';
 import InputField from '../../components/InputField/InputField.js';
 import Pagination from '../../components/Pagination/Pagination.js';
+import MatchFilterPanel from '../../components/Dropdown/Dropdown.js';
 
 const Live = () => {
     const [matches, setMatches] = useState<Fixture[]>([]);
@@ -15,7 +16,6 @@ const Live = () => {
     const [error, setError] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const matchesPerPage: number = 10;
-
 
     const onSearchTermChange = useCallback((term: string) => {
         setSearchTerm(term);
@@ -46,7 +46,6 @@ const Live = () => {
         return <div>{error}</div>
     }
 
-
     const filteredMatches = matches.filter(match =>
         match.teams.home.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         match.teams.away.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -56,10 +55,26 @@ const Live = () => {
     const firstPageIndex = lastPageIndex - matchesPerPage;
     const currentSlicedPage = filteredMatches.slice(firstPageIndex, lastPageIndex);
 
+    function sortLiveMatchesByTime() {
+        const sortedMatches = [...filteredMatches].sort((a: any, b: any) => {
+            return a.fixture.status.elapsed - b.fixture.status.elapsed;
+        });
+
+        setMatches(sortedMatches);
+    }
+
     return (
         <div className='flex flex-col m-auto w-full rounded-md bg-slate-300 p-2'>
             <InputField onSearchTermChange={onSearchTermChange} placeholder='Search...' />
 
+            <div className='flex justify-between items-center'>
+                <MatchFilterPanel
+                    sortLiveMatchesByTime={sortLiveMatchesByTime}
+                />
+
+                <h1 className='text-white'>Live: {filteredMatches.length}</h1>
+            </div>
+        
             <h1 className='p-1'>Live: {filteredMatches.length}</h1>
 
             <div className='w-full rounded-md'>
