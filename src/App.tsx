@@ -4,6 +4,8 @@ import Live from './pages/Live/Live';
 import MatchDetails from './pages/MatchDetails/MatchDetails';
 import Stream from './components/Stream/Stream';
 import Navbar from './components/Navbar';
+import Calendar from './components/Calendar/Calendar';
+import Fixtures from './pages/Fixtures/Fixtures';
 // import Highlight from './components/Highlights/Highlight';
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Live />} />
           <Route path='/videos' element={<Stream />} />
+          <Route path='/fixtures' element={<Fixtures />} />
+          <Route path='/calendar' element={<Calendar />} />
           <Route path="/match-details/:matchId" element={<MatchDetails />} />
           <Route path='*' element={<div>404...</div>} />
         </Routes>
