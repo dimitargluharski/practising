@@ -46,7 +46,8 @@ const Live = () => {
             return a.fixture.status.elapsed - b.fixture.status.elapsed;
         });
 
-        localStorage.setItem('sortedMatches', JSON.stringify(sortedMatches));
+        // @TODO: Remove for now as it's causing a bug
+        // localStorage.setItem('sortedMatches', JSON.stringify(sortedMatches));
         setMatches(sortedMatches);
     }
 
