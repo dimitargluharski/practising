@@ -24,11 +24,12 @@ const Live = () => {
             setIsLoading(true);
             try {
                 const data = await APIfootball.getLiveMatches();
-                setMatches(data);
                 const savedMatches = localStorage.getItem('sortedMatches');
                 if (savedMatches) {
-                    setMatches(JSON.parse(savedMatches));
+                    const sortedIds = JSON.parse(savedMatches).map((match: any) => match.fixture.id);
+                    data.sort((a: any, b: any) => sortedIds.indexOf(a.fixture.id) - sortedIds.indexOf(b.fixture.id));
                 }
+                setMatches(data);
             } catch (err) {
                 console.error(err);
                 setError('Failed to load matches');
@@ -39,7 +40,6 @@ const Live = () => {
 
         fetchMatches();
     }, []);
-
     function sortLiveMatchesByTime() {
         const sortedMatches = [...matches].sort((a, b) => {
             // @ts-ignore
@@ -47,7 +47,7 @@ const Live = () => {
         });
 
         // @TODO: Remove for now as it's causing a bug
-        // localStorage.setItem('sortedMatches', JSON.stringify(sortedMatches));
+        localStorage.setItem('sortedMatches', JSON.stringify(sortedMatches));
         setMatches(sortedMatches);
     }
 
