@@ -27,7 +27,7 @@ const Calendar = ({ handleClick }: any) => {
     }
 
     return (
-        <div>
+        <div className='w-[500px]'>
             <div className="mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-gray-200">
                 {days.map((day, dayIdx) => (
                     <button
@@ -35,7 +35,7 @@ const Calendar = ({ handleClick }: any) => {
                         type="button"
                         onClick={() => onDayClick(day)}
                         className={classNames(
-                            'py-1.5 hover:bg-gray-100 focus:z-10',
+                            'py-1.5 hover: bg - gray - 100 focus: z - 10',
                             day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
                             (day.date === selectedDate || day.date === today) && 'font-semibold',
                             day.date === selectedDate && 'text-white',
@@ -59,10 +59,10 @@ const Calendar = ({ handleClick }: any) => {
                             {/* @ts-ignore */}
                             {day.date.split('-').pop().replace(/^0/, '')}
                         </time>
-                    </button>
+                    </button >
                 ))}
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
