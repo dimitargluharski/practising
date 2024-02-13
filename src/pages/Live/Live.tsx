@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import * as APIfootball from '../../services/football.js';
 import { Fixture } from '../../types/MatchProps.js';
@@ -6,6 +6,7 @@ import Row from '../../components/Row/Row.js';
 import InputField from '../../components/InputField/InputField.js';
 import Pagination from '../../components/Pagination/Pagination.js';
 import MatchFilterPanel from '../../components/Dropdown/Dropdown.js';
+import { ThemeContext } from '../../contexts/ThemeContext.js';
 
 const Live = () => {
     const [matches, setMatches] = useState<Fixture[]>([]);
@@ -14,6 +15,7 @@ const Live = () => {
     const [error, setError] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const matchesPerPage: number = 10;
+    const { theme } = useContext(ThemeContext);
 
     const onSearchTermChange = useCallback((term: string) => {
         setSearchTerm(term);
@@ -40,6 +42,7 @@ const Live = () => {
 
         fetchMatches();
     }, []);
+
     function sortLiveMatchesByTime() {
         const sortedMatches = [...matches].sort((a, b) => {
             // @ts-ignore
@@ -69,7 +72,7 @@ const Live = () => {
     }
 
     return (
-        <div className='flex flex-col m-auto w-full h-full rounded-md bg-slate-300 p-2 relative'>
+        <div className={`flex flex-col m-auto w-full h-full rounded-md p-2 relative ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-300'}`}>
             <InputField onSearchTermChange={onSearchTermChange} placeholder='Search...' />
 
             <div className='flex justify-between items-center'>
@@ -86,12 +89,14 @@ const Live = () => {
                     </Link>
                 )) : searchTerm ? 'No matches found for your search' : 'There are no live matches'}
             </div>
-            {filteredMatches.length > 10 && (
-                <div className='fixed ml-[250px] left-0 right-0 bottom-[35px] bg-white p-5 shadow-md'>
-                    <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalMatches={filteredMatches.length} matchesPerPage={matchesPerPage} />
-                </div>
-            )}
-        </div>
+            {
+                filteredMatches.length > 10 && (
+                    <div className='fixed ml-[250px] left-0 right-0 bottom-[35px] bg-white p-5 shadow-md'>
+                        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalMatches={filteredMatches.length} matchesPerPage={matchesPerPage} />
+                    </div>
+                )
+            }
+        </div >
     );
 }
 
