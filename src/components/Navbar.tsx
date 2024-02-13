@@ -12,8 +12,6 @@ const NavItem = ({ to, children }: any) => {
     const { theme } = useContext(ThemeContext);
     const location = useLocation();
     const isActive = location.pathname === to;
-    const bgColor = theme === 'dark' ? 'bg-slate-900' : 'bg-slate-300';
-    const textColor = 'text-white';
 
     return (
         <NavLink
