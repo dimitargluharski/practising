@@ -8,6 +8,8 @@ import ContextProvider from './contexts/ThemeContext';
 import { ThemeContext } from './contexts/ThemeContext';
 
 function App() {
+
+  // @ts-ignore
   const { theme } = useContext(ThemeContext);
 
   return (

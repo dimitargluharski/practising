@@ -48,9 +48,11 @@ const Stream = () => {
             {high[randomNumber] && (
                 <div className='h-full w-full' key={randomNumber}>
                     <div className='w-full bg-red-500 relative'>
+                        {/* @ts-ignore */}
                         <img src={`${high[randomNumber].thumbnail}`} className='block w-full h-full' />
 
                         <p className='absolute top-0 w-full p-2 bg-gradient-to-b from-slate-950 to-transparent text-slate-50'>
+                            {/* @ts-ignore */}
                             {high[randomNumber].title}
                         </p>
                     </div>
