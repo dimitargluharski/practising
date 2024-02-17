@@ -3,15 +3,15 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Row from '../../components/Row/Row';
 
-import Calendar from '../../components/Calendar/Calendar';
 import { getCurrentDate, getFixturesByDate } from '../../services/football';
-import Pagination from '../../components/Pagination/Pagination';
 
 const Fixtures = () => {
     const [state, setState] = useState({
         clickedDate: getCurrentDate(),
         fixtures: []
     });
+
+    // @ts-ignore
     const [currentPage, setCurrentPage] = useState(1);
     const matchesPerPage = 10;
 
@@ -32,29 +32,12 @@ const Fixtures = () => {
     }, []);
 
     return (
-        <div className='flex'>
-            <div style={{ width: '500px', marginRight: '5px' }}>
-                {/* <h2>Fixtures for {state.clickedDate}</h2> */}
-
-                {result.map((fixture: any) => (
-                    <Link key={fixture.id} to={`/match-details/${fixture.fixture.id}`}>
-                        <Row {...fixture} />
-                    </Link>
-                ))}
-
-                <Pagination
-                    currentPage={currentPage}
-                    totalMatches={state.fixtures.length}
-                    matchesPerPage={matchesPerPage}
-                    setCurrentPage={setCurrentPage}
-                />
-
-            </div>
-
-            <div>
-                <Calendar handleClick={handleClick} />
-            </div>
-
+        <div className='w-full p-1'>
+            {result.map((fixture: any) => (
+                <Link key={fixture.id} to={`/match-details/${fixture.fixture.id}`}>
+                    <Row {...fixture} />
+                </Link>
+            ))}
         </div>
     )
 }

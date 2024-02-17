@@ -27,8 +27,8 @@ const Calendar = ({ handleClick }: any) => {
     }
 
     return (
-        <div className='w-[500px]'>
-            <div className="mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-gray-200">
+        <div className='h-[225px] p-2'>
+            <div className="grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-gray-200">
                 {days.map((day, dayIdx) => (
                     <button
                         key={day.date}
