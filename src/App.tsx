@@ -13,13 +13,15 @@ function App() {
 
   return (
     <ContextProvider>
-      <div className='w-full h-full bg-slate-100'>
+      <div className='w-full h-full bg-slate-300'>
+        {/* <div className='bg-slate-500'> */}
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path="/match-details/:matchId" element={<MatchDetails />} />
           <Route path='*' element={<div>404...</div>} />
         </Routes>
       </div>
+      {/* </div> */}
     </ContextProvider>
   );
 }
