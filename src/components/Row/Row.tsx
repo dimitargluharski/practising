@@ -5,7 +5,6 @@ import TeamName from "../TeamName/TeamName";
 
 import { FaChevronRight } from "react-icons/fa";
 
-
 const Row = ({ fixture, teams, goals }: Fixture) => {
     return (
         <div className="flex items-center shadow-lg relative rounded-md p-2 my-1 w-full bg-slate-600 text-white hover:bg-slate-900 transition-all ease-linear">

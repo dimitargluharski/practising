@@ -14,7 +14,6 @@ const Panel = ({ title, children }: PanelProps) => {
             </div>
 
             <div className="bg-slate-50 p-2">
-                ddsds
                 {children}
             </div>
         </div>
