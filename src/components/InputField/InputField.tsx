@@ -1,3 +1,5 @@
+import { FiSearch } from 'react-icons/fi';
+
 interface InputFieldProps {
     onSearchTermChange: (searchTerm: string) => void;
     placeholder?: string;
@@ -18,7 +20,10 @@ const InputField = ({ onSearchTermChange }: InputFieldProps) => {
     }
 
     return (
-        <input name="searchTerm" onChange={onChange} className="m-2 p-3 w-[960px] shadow-sm rounded-md focus:shadow-md transition-all ease- outline-none" placeholder="Search..." />
+        <div className="relative m-2">
+            <FiSearch className="absolute top-4 left-3" />
+            <input name="searchTerm" onChange={onChange} className="pl-10 p-3 w-[960px] shadow-sm rounded-md focus:shadow-md transition-all ease- outline-none" placeholder="Search..." />
+        </div>
     )
 }
 

@@ -7,10 +7,12 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
 
+import { useLocation } from 'react-router-dom';
 
 function App() {
   // @ts-ignore
   const { theme } = useContext(ThemeContext);
+  const location = useLocation();
 
   const handleSearchTermChange = (searchTerm: string) => {
     console.log(searchTerm);
@@ -21,8 +23,12 @@ function App() {
       <ContextProvider>
         <Sidebar />
         <div className='w-full'>
-          <div className='flex justify-center bg-slate-500 mb-5'>
+          <div className='flex justify-center bg-slate-500 shadow-md'>
             <InputField onSearchTermChange={handleSearchTermChange} />
+          </div>
+
+          <div className='p-4 italic text-gray-400 font-bold text-3xl uppercase'>
+            {location.pathname}
           </div>
 
           <Routes>

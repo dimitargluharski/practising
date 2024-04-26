@@ -1,15 +1,21 @@
-import { PiTelevisionSimpleLight } from "react-icons/pi";
+interface DashboardCardsProps {
+    title: string;
+    count: number;
+    icon: JSX.Element;
+    background: string;
+    color: string;
+}
 
-export const DashboardCards = () => {
+export const DashboardCards = ({title, count, icon, background, color}: DashboardCardsProps) => {
     return (
-        <div className="flex p-2 border rounded-sm flex-1 bg-slate-500 border-slate-500 text-white">
-            <div className="flex flex-col self-center bg-slate-300 rounded-md p-2 mr-2">
-                <PiTelevisionSimpleLight size={45} color="black" />
+        <div className="flex p-2 border rounded-md flex-1 bg-slate-400 text-white">
+            <div className={`flex flex-col self-center ${background} ${color} rounded-md p-2 mr-2`}>
+                {icon}
             </div>
 
-            <div className="flex flex-col justify-center">
-                <div className="text-xl font-bold">212131312</div>
-                <div className="text-sm italic">live on tv</div>
+            <div className="flex flex-col items-center justify-center w-full">
+                <div className="text-sm italic">{title}</div>
+                <div className="text-xl font-bold">{count}</div>
             </div>
         </div>
     )
