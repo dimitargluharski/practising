@@ -3,6 +3,8 @@ import { useContext } from 'react';
 import ContextProvider from './contexts/ThemeContext';
 import { ThemeContext } from './contexts/ThemeContext';
 import InputField from './components/InputField/InputField';
+import { Sidebar } from './components/Sidebar/Sidebar';
+
 
 function App() {
   // @ts-ignore
@@ -13,13 +15,17 @@ function App() {
   }
 
   return (
-    <ContextProvider>
-      <div>
-        <div className='flex justify-center'>
+
+    <div className='flex'>
+      <ContextProvider>
+        <Sidebar />
+              <div>
+            <div className='flex justify-center'>
           <InputField onSearchTermChange={handleSearchTermChange} />
         </div>
       </div>
-    </ContextProvider>
+      </ContextProvider>
+    </div>
   );
 }
 
