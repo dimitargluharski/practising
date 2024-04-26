@@ -1,5 +1,5 @@
 import { IoGrid, IoList } from "react-icons/io5";
-import { Link, Route, Routes } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useLocation } from "react-router-dom"
 
 export const Sidebar = () => {
@@ -21,11 +21,6 @@ export const Sidebar = () => {
                     Fixtures
                 </span>
             </Link>
-
-            <Routes>
-                <Route path="/dashboard" />
-                <Route path="/live-matches" />
-            </Routes>
         </div>
     )
 }
