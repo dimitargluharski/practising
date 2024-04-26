@@ -1,27 +1,24 @@
-import { Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
-
-import Dashboard from './pages/Dashboard/Dashboard';
-import MatchDetails from './pages/MatchDetails/MatchDetails';
 
 import ContextProvider from './contexts/ThemeContext';
 import { ThemeContext } from './contexts/ThemeContext';
+import InputField from './components/InputField/InputField';
 
 function App() {
   // @ts-ignore
   const { theme } = useContext(ThemeContext);
 
+  const handleSearchTermChange = (searchTerm: string) => {
+    console.log(searchTerm);
+  }
+
   return (
     <ContextProvider>
-      <div className='w-full h-full bg-slate-300'>
-        {/* <div className='bg-slate-500'> */}
-        <Routes>
-          <Route path='/' element={<Dashboard />} />
-          <Route path="/match-details/:matchId" element={<MatchDetails />} />
-          <Route path='*' element={<div>404...</div>} />
-        </Routes>
+      <div>
+        <div className='flex justify-center'>
+          <InputField onSearchTermChange={handleSearchTermChange} />
+        </div>
       </div>
-      {/* </div> */}
     </ContextProvider>
   );
 }
