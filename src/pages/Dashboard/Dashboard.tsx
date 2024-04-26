@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
 import { PiTelevisionSimpleLight } from "react-icons/pi";
 
 import { DashboardCards } from "../../components/DashbaordCards/DashboardCards";
+import { Slider } from "../../components/Swiper/Swiper";
 
 const Dashboard = () => {
+    const [data, setData] = useState<any>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2024-03-26&sortBy=publishedAt&apiKey=28ea213dbea9483f86676f7b0735449f`);
+            const data = await response.json();
+
+            setData(data.articles);
+        }
+
+        fetchData();
+    }, []);
     return (
         <div className="flex flex-col w-full gap-5">
             <div className="flex justify-center w-full px-2 gap-5">
@@ -41,6 +55,10 @@ const Dashboard = () => {
                     background="bg-cyan-500"
                     color="white"
                 />
+            </div>
+
+            <div className="flex px-2">
+                <Slider data={data} />
             </div>
         </div>
     )
