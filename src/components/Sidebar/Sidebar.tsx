@@ -1,5 +1,6 @@
 import { IoGrid, IoList } from "react-icons/io5";
 import { Link } from "react-router-dom"
+import { PiTelevisionBold } from "react-icons/pi";
 import { useLocation } from "react-router-dom"
 
 export const Sidebar = () => {
@@ -23,7 +24,7 @@ export const Sidebar = () => {
             </Link>
             <Link to="/streams" className={`flex flex-row items-center p-2 font-medium hover:bg-slate-400 ${location.pathname === '/streams' ? 'bg-slate-400' : ''}`}>
                 <span className="space-2">
-                    <IoList />
+                    <PiTelevisionBold />
                 </span>
                 <span className="ml-1">
                     Streams
