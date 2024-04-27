@@ -7,7 +7,6 @@ export const getHighlights = async () => {
     const response = await fetch(url + key);
     const data = await response.json();
 
-
     let liveStream = [];
     let highlightVideos = [];
 

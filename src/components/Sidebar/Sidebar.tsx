@@ -18,7 +18,15 @@ export const Sidebar = () => {
                     <IoList />
                 </span>
                 <span className="ml-1">
-                    Fixtures
+                    Live Matches
+                </span>
+            </Link>
+            <Link to="/streams" className={`flex flex-row items-center p-2 font-medium hover:bg-slate-400 ${location.pathname === '/streams' ? 'bg-slate-400' : ''}`}>
+                <span className="space-2">
+                    <IoList />
+                </span>
+                <span className="ml-1">
+                    Streams
                 </span>
             </Link>
         </div>

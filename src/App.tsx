@@ -6,6 +6,7 @@ import InputField from './components/InputField/InputField';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
+import { Streams } from './pages/Streams/Streams';
 
 import { useLocation } from 'react-router-dom';
 
@@ -34,6 +35,7 @@ function App() {
           <Routes>
             <Route path="/dashboard" Component={Dashboard} />
             <Route path="/live-matches" />
+            <Route path="/streams" Component={Streams} />
           </Routes>
         </div>
       </ContextProvider>
