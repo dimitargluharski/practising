@@ -4,8 +4,6 @@ import { PiTelevisionSimpleLight } from "react-icons/pi";
 import { DashboardCards } from "../../components/DashbaordCards/DashboardCards";
 import { Slider } from "../../components/Swiper/Swiper";
 
-import { Highlight } from "../../components/Highlights/Highlight";
-
 const Dashboard = () => {
     const [data, setData] = useState<any>([]);
 
