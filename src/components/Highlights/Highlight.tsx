@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import moment from 'moment';
 
 // @ts-ignore
 import * as ScoreBatService from '../../services/scoreBat.js';
