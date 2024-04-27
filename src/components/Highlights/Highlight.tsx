@@ -34,8 +34,6 @@ export const Highlight = () => {
     }, []);
 
     const openModal = (videos: any) => {
-        console.log('video', videos);
-
         if (videos) {
             const srcRegex = /src='([^']*)'/;
             const match = videos.embed.match(srcRegex);
@@ -43,7 +41,6 @@ export const Highlight = () => {
 
             if (match && match[1]) {
                 setCurrentEmbed(match[1]);
-                console.log('currentEmbed', currentEmbed)
             }
             setModalOpen(true);
         }
@@ -55,10 +52,6 @@ export const Highlight = () => {
 
     return (
         <div className='flex flex-col h-[804px] overflow-y-scroll'>
-            <div className='text-white'>
-                Videos: {videos.length}
-            </div>
-
             {videos.map((video, i) => (
                 <div key={i} onClick={() => openModal(video)}>
                     {/* Render the video here */}<div key={i} onClick={() => openModal(video.videos)} className='flex items-center m-1 shadow-lg rounded-lg p-2 bg-slate-300 hover:bg-slate-900 hover:text-white'>
