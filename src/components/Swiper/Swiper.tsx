@@ -12,7 +12,6 @@ interface SliderProps {
 }
 
 export const Slider = ({ data }: SliderProps) => {
-    console.log(data);
     return (
         <div className='w-[1024px] h-[500px] bg-slate-500'>
             <Swiper
@@ -20,9 +19,6 @@ export const Slider = ({ data }: SliderProps) => {
                 spaceBetween={0}
                 slidesPerView={1}
                 autoplay={{ delay: 3000 }}
-                onAutoplay={() => console.log('autoplay')}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 navigation
             >
