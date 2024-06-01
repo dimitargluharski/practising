@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 import { BsList } from "react-icons/bs";
 import { RiLayoutGridFill } from "react-icons/ri";
@@ -23,7 +23,11 @@ export const GridContext = createContext<ContextProps>({
 });
 
 export const GridProvider = ({ children }: GridProps) => {
-  const [grid, setGrid] = useState<string>('grid');
+  const [grid, setGrid] = useState<string>(() => localStorage.getItem('grid') || 'focus');
+
+  useEffect(() => {
+    localStorage.setItem('grid', grid);
+  }, [grid]);
 
   const handleChangeGridLayout = () => {
     setGrid(grid === 'focus' ? 'grid' : 'focus');
