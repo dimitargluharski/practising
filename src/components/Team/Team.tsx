@@ -7,9 +7,11 @@ interface TeamProps {
 
 export const Team = ({ name, logo }: TeamProps) => {
   return (
-    <div className="flex items-center gap-x-2">
+    <div className="flex items-center gap-x-2 ">
       <Logo src={logo} />
-      {name}
+      <div className="truncate">
+        {name}
+      </div>
     </div>
   )
 }
