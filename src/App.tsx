@@ -9,6 +9,7 @@ import { InputText } from './components/InputText/InputText';
 import { useContext } from 'react';
 import { ThemeContext } from './contexts/ThemeContext';
 import { GridContext } from './contexts/GridContext';
+import { MatchDetails } from './pages/MatchDetails/MatchDetails';
 
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
       <body className='flex justify-center'>
         <Routes>
           <Route path='/' Component={Home} />
+          <Route path='/match-details/:matchId' Component={MatchDetails} />
         </Routes>
       </body>
     </div>
