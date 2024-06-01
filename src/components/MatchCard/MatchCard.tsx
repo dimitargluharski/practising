@@ -8,7 +8,6 @@ import { Result } from "../Result/Result";
 
 // @TODO: change any type
 export const MatchCard = ({ matchData }: any) => {
-  // fixture.venue.name
   const { teams: { home, away }, goals, fixture: { id, status: { elapsed } } } = matchData;
 
   const { theme } = useContext(ThemeContext);

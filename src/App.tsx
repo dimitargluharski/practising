@@ -14,10 +14,12 @@ import { MatchDetails } from './pages/MatchDetails/MatchDetails';
 
 const App = () => {
   const [matches, setMatches] = useState<[]>([]);
-  const { theme, handleChangeTheme, darkIconTheme, lightIconTheme } = useContext(ThemeContext);
-  const { focusMode, grid, gridMode, handleChangeGridLayout } = useContext(GridContext);
-  const location = useLocation();
+  const {theme, handleChangeTheme, darkIconTheme, lightIconTheme} = useContext(ThemeContext);
+  const {focusMode, grid, gridMode, handleChangeGridLayout} = useContext(GridContext);
   const [refreshList, setRefreshList] = useState([]);
+  const [text, setText] = useState('');
+  
+  const location = useLocation();
 
   useEffect(() => {
     footballApi.getLiveMatches()
@@ -28,11 +30,15 @@ const App = () => {
     console.log('refresh');
     setRefreshList(matches);
   }
+  
+  const handleChangeText = (event: any) => {
+    setText(event.target.value);
+  }
 
   return (
     <div className={`${theme === 'light' ? 'bg-slate-600' : 'bg-slate-300'} flex flex-col w-full min-h-screen`}>
       <header className={`flex justify-center items-center p-2 ${theme === 'light' ? 'bg-slate-900' : 'bg-slate-400'} relative`}>
-        <InputText />
+        <InputText handleChangeText={handleChangeText} value={text} />
   
         <div className={`${theme === 'light' ? 'bg-yellow-500' : 'bg-slate-500'} flex items-center rounded-md absolute right-5`}>
           <button onClick={handleChangeTheme} className='text-white text-2xl p-1' title='Change theme'>
@@ -52,7 +58,7 @@ const App = () => {
   
       <body className='flex justify-center'>
         <Routes>
-          <Route path='/' Component={Home} />
+          <Route path='/' element={<Home query={text} />} />
           <Route path='/match-details/:matchId' Component={MatchDetails} />
         </Routes>
       </body>
