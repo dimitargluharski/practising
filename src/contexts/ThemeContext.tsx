@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { MdSunny } from "react-icons/md";
 import { IoMdMoon } from "react-icons/io";
 
@@ -21,7 +21,11 @@ export const ThemeContext = createContext<ThemeContextProps>({
 });
 
 export const ThemeProvider = ({ children }: ThemeProps) => {
-const [theme, setTheme] = useState<string | null>('light');
+  const [theme, setTheme] = useState<string>(() => localStorage.getItem('theme') === 'dark' ? 'light' : 'dark');
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
+  }, [theme]);
 
   const handleChangeTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
