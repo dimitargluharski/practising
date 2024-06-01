@@ -1,43 +1,43 @@
-const KEY = '0994604109a6e8c02639fc02913eb96e'; // not good practice to show the key, move it in .env file later
-const API_HOST = 'v3.football.api-sports.io';
+// const KEY = '0994604109a6e8c02639fc02913eb96e'; // not good practice to show the key, move it in .env file later
+// const API_HOST = 'v3.football.api-sports.io';
 
-export const getLiveMatches = async () => {
-    const res = await fetch(`https://v3.football.api-sports.io/fixtures?live=all`, {
-        headers: {
-            "X-RapidAPI-Key": `${KEY}`,
-            "X-RapidAPI-Host": `${API_HOST}`,
-        },
-    });
+// export const getLiveMatches = async () => {
+//     const res = await fetch(`https://v3.football.api-sports.io/fixtures?live=all`, {
+//         headers: {
+//             "X-RapidAPI-Key": `${KEY}`,
+//             "X-RapidAPI-Host": `${API_HOST}`,
+//         },
+//     });
 
-    const json = await res.json();
-    console.log('res', json.response)
+//     const json = await res.json();
+//     console.log('res', json.response)
 
-    // @TODO: use this when fetch all available matches (including live, upcoming, TBC and etc)
-    // let newArray = [];
-    // let league = {
-    //     id: '',
-    //     countryName: '',
-    //     countryFlag: '',
-    //     matches: []
-    // };
+//     // @TODO: use this when fetch all available matches (including live, upcoming, TBC and etc)
+//     // let newArray = [];
+//     // let league = {
+//     //     id: '',
+//     //     countryName: '',
+//     //     countryFlag: '',
+//     //     matches: []
+//     // };
 
-    // json.response.forEach((match) => {
-    //     if (league.id !== match.league.id) {
-    //         league = {
-    //             id: match.league.id,
-    //             countryLeageName: match.league.name,
-    //             countryName: match.league.country,
-    //             countryFlag: match.league.flag,
-    //             matches: []
-    //         };
-    //         newArray.push(league);
-    //     }
-    //     league.matches.push(match);
-    // });
+//     // json.response.forEach((match) => {
+//     //     if (league.id !== match.league.id) {
+//     //         league = {
+//     //             id: match.league.id,
+//     //             countryLeageName: match.league.name,
+//     //             countryName: match.league.country,
+//     //             countryFlag: match.league.flag,
+//     //             matches: []
+//     //         };
+//     //         newArray.push(league);
+//     //     }
+//     //     league.matches.push(match);
+//     // });
 
-    // console.log(newArray)
-    return json.response;
-};
+//     // console.log(newArray)
+//     return json.response;
+// };
 
 export const getCurrentDate = () => {
     const date = new Date();
@@ -110,5 +110,25 @@ export const getMatchPrediction = async (matchId) => {
 
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const getLiveMatches = async () => {
+    const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all';
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '35cec9dbc3msh5793246bc58b3c6p1bcc3ejsnbb63fcaabf35',
+            'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+        }
+    };
+    
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        return result.response;
+    } catch (error) {
+        console.error(error);
     }
 }

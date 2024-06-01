@@ -1,46 +1,61 @@
+import { useState, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { MdRefresh } from "react-icons/md";
+
+import * as footballApi from '../src/services/football';
+
+import { Home } from './pages/Home/Home';
+import { InputText } from './components/InputText/InputText';
 import { useContext } from 'react';
-
-import ContextProvider from './contexts/ThemeContext';
 import { ThemeContext } from './contexts/ThemeContext';
-import InputField from './components/InputField/InputField';
-import { Sidebar } from './components/Sidebar/Sidebar';
-import { Route, Routes } from 'react-router-dom';
-import Dashboard from './pages/Dashboard/Dashboard';
-import { Streams } from './pages/Streams/Streams';
+import { GridContext } from './contexts/GridContext';
 
-import { useLocation } from 'react-router-dom';
 
-function App() {
-  // @ts-ignore
-  const { theme } = useContext(ThemeContext);
+const App = () => {
+  const [matches, setMatches] = useState<[]>([]);
+  const { theme, handleChangeTheme, darkIconTheme, lightIconTheme } = useContext(ThemeContext);
+  const { focusMode, grid, gridMode, handleChangeGridLayout } = useContext(GridContext);
   const location = useLocation();
+  const [refreshList, setRefreshList] = useState([]);
 
-  const handleSearchTermChange = (searchTerm: string) => {
-    console.log(searchTerm);
+  useEffect(() => {
+    footballApi.getLiveMatches()
+      .then(data => setMatches(data)).catch((error) => console.log('error', error))
+  }, [refreshList]);
+
+  const handleRefreshList = () => {
+    console.log('refresh');
+    setRefreshList(matches);
   }
 
   return (
-    <div className='flex'>
-      <ContextProvider>
-        <Sidebar />
-        <div className='w-full'>
-          <div className='flex justify-center bg-slate-500 shadow-md'>
-            <InputField onSearchTermChange={handleSearchTermChange} />
-          </div>
-
-          <div className='p-4 italic text-gray-400 font-bold text-3xl uppercase'>
-            {location.pathname}
-          </div>
-
-          <Routes>
-            <Route path="/dashboard" Component={Dashboard} />
-            <Route path="/live-matches" />
-            <Route path="/streams" Component={Streams} />
-          </Routes>
+    <div className={`${theme === 'light' ? 'bg-slate-600' : 'bg-slate-300'} flex flex-col w-full min-h-screen`}>
+      <header className={`flex justify-center items-center p-2 ${theme === 'light' ? 'bg-slate-900' : 'bg-slate-400'} relative`}>
+        <InputText />
+  
+        <div className={`${theme === 'light' ? 'bg-yellow-500' : 'bg-slate-500'} flex items-center rounded-md absolute right-5`}>
+          <button onClick={handleChangeTheme} className='text-white text-2xl p-1' title='Change theme'>
+            {theme === 'light' ? darkIconTheme : lightIconTheme}
+          </button>
+  
+          {location.pathname === "/" && <button className='text-white text-2xl p-1' onClick={handleRefreshList} title='Refresh'>
+            <MdRefresh />
+          </button>}
+  
+          {location.pathname === "/" && <button className='text-white text-2xl p-1' onClick={handleChangeGridLayout} title='Change grid'>
+            {grid === 'grid' ? gridMode : focusMode}
+          </button>}
+  
         </div>
-      </ContextProvider>
+      </header>
+  
+      <body className='flex justify-center'>
+        <Routes>
+          <Route path='/' Component={Home} />
+        </Routes>
+      </body>
     </div>
   );
-}
+};
 
 export default App;

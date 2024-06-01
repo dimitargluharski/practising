@@ -1,35 +1,45 @@
 import { ReactNode, createContext, useState } from "react";
+import { MdSunny } from "react-icons/md";
+import { IoMdMoon } from "react-icons/io";
 
-interface ThemeContextType {
-    theme: string;
-    setTheme: (theme: string) => void;
-    toggleTheme: () => void;
+interface ThemeProps {
+  children: ReactNode
 }
 
-interface Props {
-    children: ReactNode;
+interface ThemeContextProps {
+  theme: string | null;
+  handleChangeTheme: () => void;
+  lightIconTheme: ReactNode
+  darkIconTheme: ReactNode
 }
 
-export const ThemeContext = createContext<ThemeContextType>({
-    theme: 'light',
-    setTheme: () => { },
-    toggleTheme: () => { },
+export const ThemeContext = createContext<ThemeContextProps>({
+  theme: 'light',
+  handleChangeTheme: () => {},
+  lightIconTheme: <MdSunny />,
+  darkIconTheme: <IoMdMoon />
 });
 
+export const ThemeProvider = ({ children }: ThemeProps) => {
+const [theme, setTheme] = useState<string | null>('light');
 
-const ContextProvider = ({ children }: Props) => {
-    const [theme, setTheme] = useState('light');
+  const handleChangeTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  }
 
-    const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light');
-        localStorage.setItem('theme', theme);
-    }
+  const lightIconTheme = <MdSunny />;
+  const darkIconTheme = <IoMdMoon />;
+  
+  const value = {
+    handleChangeTheme,
+    theme,
+    lightIconTheme,
+    darkIconTheme
+  }
 
-    return (
-        <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
-            {children}
-        </ThemeContext.Provider>
-    )
+  return (
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
+  )
 }
-
-export default ContextProvider;
