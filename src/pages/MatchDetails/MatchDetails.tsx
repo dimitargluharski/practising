@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 
 import * as footballService from '../../services/football';
 
-import { ButterflyStatistics } from "../../components/ButterflyStatistics/ButterflyStatistics";
-
 export const MatchDetails = () => {
   const [data, setData] = useState([]);
   const { matchId } = useParams();
