@@ -23,7 +23,7 @@ export const GridContext = createContext<ContextProps>({
 });
 
 export const GridProvider = ({ children }: GridProps) => {
-  const [grid, setGrid] = useState<string | null>('grid');
+  const [grid, setGrid] = useState<string>('grid');
 
   const handleChangeGridLayout = () => {
     setGrid(grid === 'focus' ? 'grid' : 'focus');

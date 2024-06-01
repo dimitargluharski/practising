@@ -7,7 +7,7 @@ import { GridContext } from '../../contexts/GridContext';
 
 export const Home = () => {
   const [matches, setMatches] = useState([]);
-  const { focusMode, gridMode, handleChangeGridLayout, grid } = useContext(GridContext);
+  const { grid } = useContext(GridContext);
 
   useEffect(() => {
     footballService.getLiveMatches()
