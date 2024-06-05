@@ -11,6 +11,10 @@ import { ThemeContext } from './contexts/ThemeContext';
 import { GridContext } from './contexts/GridContext';
 import { MatchDetails } from './pages/MatchDetails/MatchDetails';
 
+export interface ChangeEventProps {
+  event: React.ChangeEvent<HTMLInputElement>;
+  value: string
+}
 
 const App = () => {
   const [matches, setMatches] = useState<[]>([]);
@@ -31,7 +35,7 @@ const App = () => {
     setRefreshList(matches);
   }
   
-  const handleChangeText = (event: any) => {
+  const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   }
 
