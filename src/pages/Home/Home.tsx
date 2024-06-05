@@ -42,7 +42,7 @@ export const Home = ({ query }: any) => {
   }, [query, matches]);
 
   return (
-    <div className={`${grid === 'grid' ? 'grid grid-cols-7 w-full' : 'flex flex-col w-[768px]'}`}>
+    <div className={`${grid === 'grid' ? 'grid lg:grid-cols7 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 w-full' : 'flex flex-col w-[768px]'}`}>
       {filteredMatches.length === 0
         ? 'There is no results'
         : filteredMatches.map((m, i) => (
