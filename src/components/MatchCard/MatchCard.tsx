@@ -15,11 +15,11 @@ const MatchCardComponent = ({ matchData }: MatchCardProps): JSX.Element => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`flex items-center shadow rounded-md p-2 gap-x-2 m-1 ${theme === 'light' ? 'rounded-md text-white bg-slate-800' : 'bg-slate-200 text-black'}`}>
+    <div className={`flex items-center overflow-hidden shadow rounded-md p-2 gap-x-2 m-1 ${theme === 'light' ? 'rounded-md text-white bg-slate-800' : 'bg-slate-200 text-black'}`}>
       <Time time={elapsed} />
       <Result goals={goals} />
 
-      <div>
+      <div className="truncate">
         <Team name={home.name} logo={home.logo} />
         <Team name={away.name} logo={away.logo} />
       </div>
