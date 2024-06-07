@@ -50,9 +50,11 @@ const App = () => {
       <header className={`flex justify-center items-center p-2 ${theme === 'light' ? 'bg-slate-900' : 'bg-slate-400'} relative`}>
         <InputText handleChangeText={handleChangeText} value={text} />
 
-        {upcomingMatches.length > 0 ? <Link aria-disabled='true' to="/live" className='flex items-center ml-2 animate-pulse uppercase bg-red-500 rounded-md p-1'>
-          <span className='text-white'>Live</span>
-        </Link> : null}
+        <div className='absolute top-3 right-[123px]'>
+          {upcomingMatches.length > 0 ? <Link to="/live" className='bg-red-500 hover:bg-red-600 animate-pulse flex items-center uppercase rounded-md px-2'>
+            <span className='text-white'>Live</span>
+          </Link> : null}
+        </div>
 
         <div className={`${theme === 'light' ? 'bg-yellow-500' : 'bg-slate-500'} flex items-center rounded-md absolute right-5`}>
           <button onClick={handleChangeTheme} className='text-white text-2xl p-1' title='Change theme'>
