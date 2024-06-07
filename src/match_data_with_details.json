@@ -1,0 +1,238 @@
+[
+  {
+    "link": "https://buff-streams.net/soccer/sweden-u21-vs-england-u20/12401429",
+    "time": "16:45",
+    "homeTeam": "Sweden U21",
+    "awayTeam": "England U20",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/austria-u21-vs-scotland-u21/12340912",
+    "time": "17:30",
+    "homeTeam": "Austria U21",
+    "awayTeam": "Scotland U21",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/croatia-u21-vs-ireland-u21/12340930",
+    "time": "19:30",
+    "homeTeam": "Croatia U21",
+    "awayTeam": "Ireland U21",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/slovakia-u21-vs-azerbaijan-u21/12340914",
+    "time": "21:15",
+    "homeTeam": "Slovakia U21",
+    "awayTeam": "Azerbaijan U21",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/cambodia-vs-mongolia/12341035",
+    "time": "12:45",
+    "homeTeam": "Cambodia",
+    "awayTeam": "Mongolia",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/albania-vs-azerbaijan/12258877",
+    "time": "17:30",
+    "homeTeam": "Albania",
+    "awayTeam": "Azerbaijan",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/armenia-vs-kazakhstan/12076184",
+    "time": "19:30",
+    "homeTeam": "Armenia",
+    "awayTeam": "Kazakhstan",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/poland-vs-ukraine/12253167",
+    "time": "19:45",
+    "homeTeam": "Poland",
+    "awayTeam": "Ukraine",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js",
+      "https://buff-streams.net/js/embed.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": [
+      "https://bestsolaris.com/solaris.php?postid=59162"
+    ]
+  },
+  {
+    "link": "https://buff-streams.net/soccer/czech-republic-vs-malta/12255948",
+    "time": "20:15",
+    "homeTeam": "Czech Republic",
+    "awayTeam": "Malta",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/germany-vs-greece/12208861",
+    "time": "21:15",
+    "homeTeam": "Germany",
+    "awayTeam": "Greece",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js",
+      "https://buff-streams.net/js/embed.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": [
+      "https://bestsolaris.com/solaris.php?postid=59161"
+    ]
+  },
+  {
+    "link": "https://buff-streams.net/soccer/belarus-vs-russia/12378102",
+    "time": "21:30",
+    "homeTeam": "Belarus",
+    "awayTeam": "Russia",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/romania-vs-liechtenstein/12076359",
+    "time": "22:00",
+    "homeTeam": "Romania",
+    "awayTeam": "Liechtenstein",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": []
+  },
+  {
+    "link": "https://buff-streams.net/soccer/england-vs-iceland/12076179",
+    "time": "23:45",
+    "homeTeam": "England",
+    "awayTeam": "Iceland",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js",
+      "https://buff-streams.net/js/embed.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": [
+      "https://bestsolaris.com/solaris.php?postid=59160"
+    ]
+  },
+  {
+    "link": "https://buff-streams.net/soccer/scotland-vs-finland/12076186",
+    "time": "00:00",
+    "homeTeam": "Scotland",
+    "awayTeam": "Finland",
+    "matchData": [],
+    "scriptSrc": [
+      "https://buff-streams.net/js/jquery.min.js",
+      "https://buff-streams.net/js/bootstrap.min.js",
+      "https://buff-streams.net/js/embed.js",
+      "https://acscdn.com/script/suv4.js",
+      "https://acscdn.com/script/suv5.js",
+      "https://buff-streams.net/js/embed.js"
+    ],
+    "videoSrc": [],
+    "iframeSrc": [
+      "https://bestsolaris.com/solaris.php?postid=59163"
+    ]
+  }
+]

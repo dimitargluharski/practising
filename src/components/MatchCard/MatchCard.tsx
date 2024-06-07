@@ -9,7 +9,7 @@ interface MatchCardProps {
   matchData: any; // @TODO: change any type
 }
 
-const MatchCardComponent = ({ matchData }: MatchCardProps): JSX.Element => {
+export const MatchCardComponent = ({ matchData }: MatchCardProps): JSX.Element => {
   const { teams: { home, away }, goals, fixture: { status: { elapsed } } } = matchData;
 
   const { theme } = useContext(ThemeContext);

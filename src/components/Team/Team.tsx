@@ -2,7 +2,7 @@ import { Logo } from "../Logo/Logo"
 
 interface TeamProps {
   name: string
-  logo: string
+  logo?: string
 }
 
 export const Team = ({ name, logo }: TeamProps) => {
