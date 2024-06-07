@@ -51,7 +51,7 @@ const App = () => {
         <InputText handleChangeText={handleChangeText} value={text} />
 
         <div className='absolute top-3 right-[123px]'>
-          {upcomingMatches.length === 0 ? <Link to="/live" className='bg-red-500 hover:bg-red-600 animate-pulse flex items-center uppercase rounded-md px-2'>
+          {upcomingMatches.length > 0 ? <Link to="/live" className='bg-red-500 hover:bg-red-600 animate-pulse flex items-center uppercase rounded-md px-2'>
             <span className='text-white'>Live</span>
           </Link> : null}
         </div>
