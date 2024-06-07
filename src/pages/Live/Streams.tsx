@@ -55,8 +55,8 @@ const MatchCard = ({ awayTeam, homeTeam, time, link }: MatchCardProps) => {
     <Link to={link} className={`flex items-center overflow-hidden shadow rounded-md p-2 gap-x-2 m-1 ${theme === 'light' ? 'rounded-md text-white bg-slate-800' : 'bg-slate-200 text-black'}`}>
       <div>{localTime}</div>
       <div className='truncate'>
-        <Team name={homeTeam} />
-        <Team name={awayTeam} />
+        <Team logo='' name={homeTeam} />
+        <Team logo='' name={awayTeam} />
       </div>
     </Link>
   );
