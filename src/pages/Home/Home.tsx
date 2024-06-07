@@ -58,7 +58,7 @@ export const Home = ({ query }: any) => {
   return (
     <div className={`${grid === 'grid' ? 'grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 w-full' : 'flex flex-col w-[768px]'}`}>
       {matches.length === 0
-        ? 'There is no live matches'
+        ? 'There are no live matches'
         : loading
           ? <Loading />
           : filteredMatches.map((m, i) => (
