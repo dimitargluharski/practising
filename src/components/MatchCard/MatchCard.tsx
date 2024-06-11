@@ -16,7 +16,7 @@ export const MatchCardComponent = ({ matchData, handleToggleSlideoutComponent }:
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`flex items-center overflow-hidden shadow rounded-md p-2 gap-x-2 m-1 ${theme === 'light' ? 'rounded-md text-white bg-slate-800' : 'bg-slate-200 text-black'}`} onClick={handleToggleSlideoutComponent}>
+    <div className={`flex items-center hover:cursor-pointer overflow-hidden shadow rounded-md p-2 gap-x-2 m-1 ${theme === 'light' ? 'rounded-md text-white bg-slate-800' : 'bg-slate-200 text-black'}`} onClick={handleToggleSlideoutComponent}>
       <Time time={elapsed} />
       <Result goals={goals} />
 
