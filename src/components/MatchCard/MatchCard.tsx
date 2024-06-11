@@ -7,15 +7,16 @@ import { Result } from "../Result/Result";
 
 interface MatchCardProps {
   matchData: any; // @TODO: change any type
+  handleToggleSlideoutComponent: () => void;
 }
 
-export const MatchCardComponent = ({ matchData }: MatchCardProps): JSX.Element => {
+export const MatchCardComponent = ({ matchData, handleToggleSlideoutComponent }: MatchCardProps): JSX.Element => {
   const { teams: { home, away }, goals, fixture: { status: { elapsed } } } = matchData;
 
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`flex items-center overflow-hidden shadow rounded-md p-2 gap-x-2 m-1 ${theme === 'light' ? 'rounded-md text-white bg-slate-800' : 'bg-slate-200 text-black'}`}>
+    <div className={`flex items-center overflow-hidden shadow rounded-md p-2 gap-x-2 m-1 ${theme === 'light' ? 'rounded-md text-white bg-slate-800' : 'bg-slate-200 text-black'}`} onClick={handleToggleSlideoutComponent}>
       <Time time={elapsed} />
       <Result goals={goals} />
 
