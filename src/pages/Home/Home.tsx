@@ -22,7 +22,8 @@ export const Home = ({ query }: any) => {
   const [filteredMatches, setFilteredMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [isClicked, setIsClicked] = useState<boolean>(false);
-  const slideoutRef = useRef(null);
+  const slideoutRef = useRef<HTMLDivElement | null>(null);
+  const [selectedMatch, setSelectedMatch] = useState(null);
 
   const { grid } = useContext(GridContext);
 
@@ -59,7 +60,7 @@ export const Home = ({ query }: any) => {
   }
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: any) => {
       if (slideoutRef.current && !slideoutRef.current.contains(event.target)) {
         setIsClicked(false);
       }
@@ -71,22 +72,22 @@ export const Home = ({ query }: any) => {
     };
   }, []);
 
-  const handleToggleSlideoutComponent = () => {
+  const handleToggleSlideoutComponent = (match:any) => {
+    setSelectedMatch(match);
     setIsClicked(!isClicked);
-    console.log('isClicked', isClicked);
-  }
+  };
 
   return (
     <>
-      <div className={`relative w-full ${isClicked ? 'bg' : ''}`}>
+      <div className='relative w-full'>
         <div className={`${grid === 'grid' ? 'grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 w-full' : 'flex flex-col w-[768px]'}`}>
           {matches.length === 0
             ? 'There are no live matches'
             : loading
               ? <Loading />
               : filteredMatches.map((m, i) => (
-                <div key={i + 1 * Math.random()}>
-                  <MatchCard matchData={m} handleToggleSlideoutComponent={handleToggleSlideoutComponent} />
+                <div key={i + 1 * Math.random()} className='transition hover:space-y-2'>
+                  <MatchCard matchData={m} handleToggleSlideoutComponent={() => handleToggleSlideoutComponent(m)} />
                 </div>
               ))}
         </div>
@@ -95,7 +96,7 @@ export const Home = ({ query }: any) => {
         <>
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10"></div>
           <div ref={slideoutRef}>
-            <Slideout />
+            <Slideout matchObject={selectedMatch} />
           </div>
         </>
       )}
