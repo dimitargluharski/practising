@@ -4,13 +4,13 @@ export function getEventDetail(event: Event) {
             // @ts-ignore
             switch (event.detail) {
                 case "Normal Goal":
-                    return "Scored a goal";
+                    return "scored a goal!";
                 case "Own Goal":
-                    return "Scored an own goal";
+                    return "scored an own goal!";
                 case "Penalty":
-                    return "Scored a penalty";
+                    return "scored a penalty!";
                 case "Missed Penalty":
-                    return "Missed a penalty";
+                    return "missed a penalty!";
                 default:
                     // @ts-ignore
                     return event.detail;
@@ -19,9 +19,9 @@ export function getEventDetail(event: Event) {
             // @ts-ignore
             switch (event.detail) {
                 case "Yellow Card":
-                    return "Received a yellow card";
+                    return "received a yellow card.";
                 case "Red Card":
-                    return "Received a red card";
+                    return "received a red card.";
                 default:
                     // @ts-ignore
                     return event.detail;
@@ -34,9 +34,9 @@ export function getEventDetail(event: Event) {
 
             switch (event.detail) {
                 case "Goal cancelled":
-                    return "Goal was cancelled";
+                    return "goal was cancelled.";
                 case "Penalty confirmed":
-                    return "Penalty was confirmed";
+                    return "penalty was confirmed.";
                 default:
                     // @ts-ignore
                     return event.detail;
