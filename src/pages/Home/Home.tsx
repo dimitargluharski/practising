@@ -79,8 +79,8 @@ export const Home = ({ query }: any) => {
 
   return (
     <>
-      <div className='relative w-full'>
-        <div className={`${grid === 'grid' ? 'grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 w-full' : 'flex flex-col w-[768px]'}`}>
+      <div className='w-full'>
+        <div className={`m-auto ${grid === 'grid' ? 'grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 w-full' : 'flex flex-col w-[768px]'}`}>
           {matches.length === 0
             ? 'There are no live matches'
             : loading
