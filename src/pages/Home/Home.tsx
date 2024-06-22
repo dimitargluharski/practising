@@ -22,7 +22,7 @@ export const Home = ({ query }: HomeProps) => {
   const [filteredMatches, setFilteredMatches] = useState<Match[]>([]);
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const slideoutRef = useRef<HTMLDivElement | null>(null);
-  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+  const [_, setSelectedMatch] = useState<Match | null>(null);
   const { grid } = useContext(GridContext);
 
   const { liveMatches, isLoading } = useFetchLiveMatches('https://v3.football.api-sports.io/fixtures?live=all');

@@ -21,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "src/consts/API_HOSTS.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

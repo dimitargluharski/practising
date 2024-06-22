@@ -71,13 +71,13 @@ const App = () => {
         </div>
       </header>
 
-      <body className='flex justify-center'>
+      <main className='flex justify-center'>
         <Routes>
           <Route path='/' element={<Home query={text} />} />
           <Route path='/match-details/:matchId' Component={MatchDetails} />
           <Route path='/live' Component={Streams} />
         </Routes>
-      </body>
+      </main>
     </div>
   );
 };
