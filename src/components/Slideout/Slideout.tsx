@@ -5,14 +5,18 @@ import { useState, useEffect } from 'react';
 import * as FootballService from '../../services/football';
 import { LeagueDetails } from '../LeagueDetails/LeagueDetails';
 import { VenueDetails } from '../VenueDetails/VenueDetails';
-import { MatchEvents } from '../MatchEvents/MatchEvents';
+import { MatchTimeline } from '../MatchTimeline/MatchTimeline';
 
-export const Slideout = ({ matchObject }: any) => {
+import { FaRegWindowClose } from "react-icons/fa";
+
+export const Slideout = ({ matchObject, handleClick }: any) => {
   const [_, setStatistics] = useState([]);
   const [details, setDetails] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { fixture: { id } } = matchObject;
+
+  console.log('matchObject', matchObject);
 
   useEffect(() => {
     setIsLoading(true); // Set loading to true when the component mounts
@@ -29,7 +33,6 @@ export const Slideout = ({ matchObject }: any) => {
     });
   }, [id]);
 
-  // @TODO: import theme context
   return (
     <div className="min-h-screen w-[calc(100vw-70%)] absolute top-0 right-0 dark:bg-slate-800 bg-slate-400 text-slate-50 p-5 z-20 overflow-none">
       {isLoading ? (
@@ -37,8 +40,12 @@ export const Slideout = ({ matchObject }: any) => {
           <div className="spinner">Loading...</div>
         </div>
       ) : (
-        <div className='flex flex-col gap-y-2'>
-          {/* @TODO: check text size */}
+        <div className='flex flex-col gap-y-2 relative'>
+          <button className='absolute top-0 -left-16 h-8 w-8 hover:scale-110 dark:text-slate-900 text-yellow-500' onClick={() => handleClick(false)}>
+            <FaRegWindowClose className='h-full w-full' />
+          </button>
+
+        
 
 
           <div className='w-full bg-slate-400 rounded-md'>
@@ -50,6 +57,12 @@ export const Slideout = ({ matchObject }: any) => {
           <div className='w-full bg-slate-400 rounded-md gap-y-1'>
             {details.length > 0 ? details.map((x, index) => <div key={index}>
               <VenueDetails venue={x} />
+            </div>) : null}
+          </div>
+
+          <div>
+            {details.length > 0 ? details.map((x, index) => <div key={index}>
+              <MatchTimeline dataObject={x} />
             </div>) : null}
           </div>
 
@@ -81,11 +94,13 @@ export const Slideout = ({ matchObject }: any) => {
             </div>) : null}
           </div>
 
-          <div className='w-full bg-slate-400 rounded-md'>
+
+
+          {/* <div className='w-full bg-slate-400 rounded-md'>
             {details.length > 0 ? details.map((x, index) => <div key={index}>
               <MatchEvents match={x} />
             </div>) : null}
-          </div>
+          </div> */}
         </div>
       )}
     </div>
