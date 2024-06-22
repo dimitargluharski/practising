@@ -3,16 +3,7 @@ import { MatchCard } from '../../components/MatchCard/MatchCard';
 import { GridContext } from '../../contexts/GridContext';
 import { useFetchLiveMatches } from '../../hooks/useFetchLiveMatches';
 
-type Match = {
-  teams: {
-    home: {
-      name: string;
-    };
-    away: {
-      name: string;
-    };
-  };
-};
+import { Match } from '../../hooks/useFetchLiveMatches';
 
 type HomeProps = {
   query: string;

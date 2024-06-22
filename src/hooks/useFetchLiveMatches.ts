@@ -2,9 +2,20 @@ import { useEffect, useState } from "react";
 import { API_KEY } from "../consts/api-key";
 import { API_HOST } from "../consts/api-host";
 
+export type Match = {
+  teams: {
+    home: {
+      name: string;
+    };
+    away: {
+      name: string;
+    };
+  };
+};
+
 export const useFetchLiveMatches = (address: string) => {
-  const [liveMatches, setLiveMatches] = useState<[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean | null>(null);
+  const [liveMatches, setLiveMatches] = useState<Match[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const options: object = {
     method: 'GET',
