@@ -1,10 +1,7 @@
 import { useState, useEffect, useContext, useRef } from 'react';
-
 import { MatchCard } from '../../components/MatchCard/MatchCard';
-
-import * as footballService from '../../services/football';
 import { GridContext } from '../../contexts/GridContext';
-import { Slideout } from '../../components/Slideout/Slideout';
+import { useFetchLiveMatches } from '../../hooks/useFetchLiveMatches';
 
 type Match = {
   teams: {
@@ -17,51 +14,43 @@ type Match = {
   };
 };
 
-export const Home = ({ query }: any) => {
-  const [matches, setMatches] = useState<Match[]>([]);
+type HomeProps = {
+  query: string;
+};
+
+export const Home = ({ query }: HomeProps) => {
   const [filteredMatches, setFilteredMatches] = useState<Match[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const slideoutRef = useRef<HTMLDivElement | null>(null);
-  const [selectedMatch, setSelectedMatch] = useState(null);
-
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
   const { grid } = useContext(GridContext);
 
-  useEffect(() => {
-    setLoading(true)
-    footballService.getLiveMatches()
-      .then(data => {
-        setMatches(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log('err', err)
-        setLoading(false);
-      })
-  }, []);
+  const { liveMatches, isLoading } = useFetchLiveMatches('https://v3.football.api-sports.io/fixtures?live=all');
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
       if (query) {
-        const filtered = matches.filter(match => match?.teams.home.name.toLowerCase().includes(query.toLowerCase()) || match?.teams.away.name.toLowerCase().includes(query.toLowerCase()));
+        const filtered = liveMatches.filter(match =>
+          match?.teams.home.name.toLowerCase().includes(query.toLowerCase()) ||
+          match?.teams.away.name.toLowerCase().includes(query.toLowerCase())
+        );
         setFilteredMatches(filtered);
       } else {
-        setFilteredMatches(matches);
+        setFilteredMatches(liveMatches);
       }
     }, 500);
 
     return () => clearTimeout(debounceTimeout);
-  }, [query, matches]);
+  }, [query, liveMatches]);
 
-  const Loading = () => {
-    return (
-      <div>Fetching data...</div>
-    )
-  }
+  const handleToggleSlideoutComponent = (match: Match) => {
+    setSelectedMatch(match);
+    setIsClicked(!isClicked);
+  };
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (slideoutRef.current && !slideoutRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (slideoutRef.current && !slideoutRef.current.contains(event.target as Node)) {
         setIsClicked(false);
       }
     };
@@ -72,34 +61,23 @@ export const Home = ({ query }: any) => {
     };
   }, []);
 
-  const handleToggleSlideoutComponent = (match:any) => {
-    setSelectedMatch(match);
-    setIsClicked(!isClicked);
-  };
-
   return (
     <>
       <div className='w-full'>
         <div className={`m-auto ${grid === 'grid' ? 'grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 w-full' : 'flex flex-col w-[768px]'}`}>
-          {matches.length === 0
-            ? 'There are no live matches'
-            : loading
-              ? <Loading />
-              : filteredMatches.map((m, i) => (
-                <div key={i + 1 * Math.random()} className='transition hover:space-y-2'>
-                  <MatchCard matchData={m} handleToggleSlideoutComponent={() => handleToggleSlideoutComponent(m)} />
-                </div>
-              ))}
+          {isLoading ? (
+            <div>Fetching data...</div>
+          ) : liveMatches.length === 0 ? (
+            <div>There are no live matches</div>
+          ) : (
+            filteredMatches.map((match, index) => (
+              <div key={`${match.teams.home.name}-${match.teams.away.name}-${index}`} className='transition hover:space-y-2'>
+                <MatchCard matchData={match} handleToggleSlideoutComponent={() => handleToggleSlideoutComponent(match)} />
+              </div>
+            ))
+          )}
         </div>
       </div>
-      {isClicked && (
-        <>
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10"></div>
-          <div ref={slideoutRef}>
-            <Slideout matchObject={selectedMatch} />
-          </div>
-        </>
-      )}
     </>
-  )
-}
+  );
+};
