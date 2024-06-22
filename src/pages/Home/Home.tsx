@@ -4,7 +4,6 @@ import { MatchCard } from '../../components/MatchCard/MatchCard';
 
 import * as footballService from '../../services/football';
 import { GridContext } from '../../contexts/GridContext';
-import { Slideout } from '../../components/Slideout/Slideout';
 
 type Match = {
   teams: {
@@ -23,7 +22,7 @@ export const Home = ({ query }: any) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const slideoutRef = useRef<HTMLDivElement | null>(null);
-  const [selectedMatch, setSelectedMatch] = useState(null);
+  const [_, setSelectedMatch] = useState(null);
 
   const { grid } = useContext(GridContext);
 
@@ -43,7 +42,8 @@ export const Home = ({ query }: any) => {
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
       if (query) {
-        const filtered = matches.filter(match => match?.teams.home.name.toLowerCase().includes(query.toLowerCase()) || match?.teams.away.name.toLowerCase().includes(query.toLowerCase()));
+        const filtered = matches.filter(match => match.teams.home.name.toLowerCase().includes(query.toLowerCase()) || match.teams.away.name.toLowerCase().includes(query.toLowerCase()));
+        console.log('filtered', filtered);
         setFilteredMatches(filtered);
       } else {
         setFilteredMatches(matches);
@@ -92,14 +92,14 @@ export const Home = ({ query }: any) => {
               ))}
         </div>
       </div>
-      {isClicked && (
+      {/* {isClicked && (
         <>
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10"></div>
           <div ref={slideoutRef}>
             <Slideout matchObject={selectedMatch} />
           </div>
         </>
-      )}
+      )} */}
     </>
   )
 }
