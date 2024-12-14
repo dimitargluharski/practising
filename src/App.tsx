@@ -14,10 +14,14 @@ const App = () => {
   }, []);
 
   // TODO: Write proper types
+  // @ts-ignore
   const countriesCount = data.map((c) => c.league.country);
   const filterUniqueCountries = [...new Set(countriesCount)];
 
+  // @ts-ignore
   const countFinishedGames = data.filter((g) => 'Match Finished' === g.fixture.status.long);
+
+  // @ts-ignore
   const notStartedGames = data.filter((g) => 'Not Started' === g.fixture.status.long);
 
   const playingStatuses = [
@@ -33,6 +37,7 @@ const App = () => {
     'Match Interrupted'
   ];
 
+  // @ts-ignore
   const countPlayingGames = data.filter((g) => playingStatuses.includes(g.fixture.status.long));
 
   return (
@@ -72,13 +77,7 @@ const App = () => {
       </div>
 
       {/* render matches and filters */}
-      <div className="p-4">
-        {data.map((g, index) => (
-          <div key={index}>
-            {g.teams.home.name} - {g.teams.away.name}
-          </div>
-        ))}
-      </div>
+      <div className="p-4"></div>
     </div >
   );
 };
