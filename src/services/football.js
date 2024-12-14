@@ -1,4 +1,4 @@
-const KEY = 'cc75ed977b6ff2922bde04c86f092d58'; // not good practice to show the key, move it in .env file later
+const apiKey = import.meta.env.VITE_API_KEY;
 const API_HOST = 'v3.football.api-sports.io';
 
 // export const getLiveMatches = async () => {
@@ -163,7 +163,7 @@ export const getStadium = async (matchId) => {
       'X-RapidAPI-Host': API_HOST
     }
   };
-  
+
   try {
     const response = await fetch(url, options);
     const result = await response.json();
@@ -183,7 +183,29 @@ export const getButterflyStatistics = async (matchId) => {
       'X-RapidAPI-Host': API_HOST
     }
   };
-  
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+
+    return result.response;
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const getAllGames = async () => {
+  const url = `https://v3.football.api-sports.io/fixtures?date=2024-12-14`;
+  // 'https://api-football-v1.p.rapidapi.com/v3/fixtures?date=2021-01-29
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': `${apiKey}`,
+      'X-RapidAPI-Host': API_HOST
+    }
+  };
+
   try {
     const response = await fetch(url, options);
     const result = await response.json();
