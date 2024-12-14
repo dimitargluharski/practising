@@ -4,6 +4,7 @@ import { IoMdGlobe } from "react-icons/io";
 import { PiSoccerBallFill } from "react-icons/pi";
 import { FaFlagCheckered } from "react-icons/fa";
 import { LuClock } from "react-icons/lu";
+import { FaPlay } from "react-icons/fa";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -18,6 +19,21 @@ const App = () => {
 
   const countFinishedGames = data.filter((g) => 'Match Finished' === g.fixture.status.long);
   const notStartedGames = data.filter((g) => 'Not Started' === g.fixture.status.long);
+
+  const playingStatuses = [
+    'First Half',
+    'Kick Off',
+    'Halftime',
+    'Second Half',
+    '2nd Half Started',
+    'Extra Time',
+    'Break Time',
+    'Penalty In Progress',
+    'Match Suspended',
+    'Match Interrupted'
+  ];
+
+  const countPlayingGames = data.filter((g) => playingStatuses.includes(g.fixture.status.long));
 
   return (
     <div className="flex flex-col mx-auto w-[1024px]">
@@ -40,8 +56,13 @@ const App = () => {
           </div>
 
           <div className="flex items-center p-4 shadow-lg rounded-md">
-            <LuClock className="w-5 h-5 text-gray-400" />
+            <LuClock className="w-5 h-5" />
             {notStartedGames.length} not started
+          </div>
+
+          <div className="flex items-center p-4 shadow-lg rounded-md">
+            <FaPlay className="w-5 h-5 " />
+            {countPlayingGames.length} games in play
           </div>
         </div>
 
@@ -51,7 +72,7 @@ const App = () => {
       </div>
 
       {/* render matches and filters */}
-      <div>
+      <div className="p-4">
         {data.map((g, index) => (
           <div key={index}>
             {g.teams.home.name} - {g.teams.away.name}
