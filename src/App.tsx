@@ -40,11 +40,12 @@ const App = () => {
   // @ts-ignore
   const countPlayingGames = data.filter((g) => playingStatuses.includes(g.fixture.status.long));
 
+  console.log('data', countPlayingGames);
+
   return (
-    <div className="flex flex-col mx-auto w-[1024px]">
-      {/* header */}
-      <div className="flex p-4 shadow-sm">
-        <div className="grid grid-cols-2">
+    <div className="grid grid-col-6">
+      <div className="p-4">
+        <div className="grid grid-cols-5">
           <div className="flex items-center p-4 shadow-lg rounded-md">
             <PiSoccerBallFill className="w-5 h-5" />
             {data.length} games today
@@ -76,8 +77,63 @@ const App = () => {
         </div>
       </div>
 
-      {/* render matches and filters */}
-      <div className="p-4"></div>
+      <div className="p-4">
+        <input type="text" className="w-full p-2 shadow-lg focus:shadow-lg rounded-sm" placeholder="Search..." />
+      </div>
+
+      <div className="p-4">
+        <div className="grid grid-cols-3 gap-5 mt-4">
+          <section className="shadow-md rounded-md p-2">
+            <div>All</div>
+            {data.map((g) => (
+              <div>
+
+                <div>
+                  {g.teams.home.name} - {g.teams.away.name}
+                </div>
+              </div>
+            ))}
+          </section>
+
+          <section className="shadow-md rounded-md p-2">
+            <div className="flex items-center">
+              <div className="h-2 w-2 animate-pulse ease-in 300ms bg-red-500 rounded mr-1"></div>
+              <span className="text-red-500 font-bold uppercase">
+                Live
+              </span>
+            </div>
+            {countPlayingGames.map((g, index) => (
+              <div key={index} className="flex">
+                <div className="mr-5">
+                  {g.fixture.status.elapsed}
+                </div>
+
+                <div className="flex justify-center">
+                  <div>
+                    {g.teams.home.name} {g.goals.home}
+                  </div>
+                  <span>
+                    -
+                  </span>
+                  <div>
+                    {g.goals.away} {g.teams.away.name}
+                  </div>
+                </div>
+
+              </div>
+            ))}
+          </section>
+
+          <section className="shadow-md rounded-md p-2">
+            <div>Finished</div>
+            {countFinishedGames.map((g, index) => (
+              <div key={index}>
+                {g.teams.home.name} - {g.teams.away.name}
+              </div>
+            ))}
+          </section>
+        </div>
+      </div>
     </div >
   );
 };
