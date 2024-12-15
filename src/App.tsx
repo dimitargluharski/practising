@@ -9,9 +9,13 @@ import { FaPlay } from "react-icons/fa";
 const App = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    getAllGames().then((res) => setData(res)).catch((err) => console.log('err', err));
-  }, []);
+  const date = new Date();
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
 
   // TODO: Write proper types
   // @ts-ignore
@@ -40,11 +44,15 @@ const App = () => {
   // @ts-ignore
   const countPlayingGames = data.filter((g) => playingStatuses.includes(g.fixture.status.long));
 
+  useEffect(() => {
+    getAllGames(formattedDate).then((res) => setData(res)).catch((err) => console.log('err', err));
+  }, []);
+
+
   return (
-    <div className="flex flex-col mx-auto w-[1024px]">
-      {/* header */}
-      <div className="flex p-4 shadow-sm">
-        <div className="grid grid-cols-2">
+    <div className="grid grid-col-6">
+      <div className="p-4">
+        <div className="grid grid-cols-5">
           <div className="flex items-center p-4 shadow-lg rounded-md">
             <PiSoccerBallFill className="w-5 h-5" />
             {data.length} games today
@@ -76,8 +84,68 @@ const App = () => {
         </div>
       </div>
 
-      {/* render matches and filters */}
-      <div className="p-4"></div>
+      <div className="p-4">
+        <input type="text" className="w-full p-2 shadow-lg focus:shadow-lg rounded-sm" placeholder="Search..." />
+      </div>
+
+      <div className="p-4">
+        <div className="grid grid-cols-3 gap-5 mt-4">
+          <section className="shadow-md rounded-md p-2">
+            <div>All</div>
+            {data.map((g) => (
+              <div>
+
+                <div>
+                  {/* @ts-ignore */}
+                  {g.teams.home.name} - {g.teams.away.name}
+                </div>
+              </div>
+            ))}
+          </section>
+
+          <section className="shadow-md rounded-md p-2">
+            <div className="flex items-center">
+              <div className="h-2 w-2 animate-pulse ease-in 300ms bg-red-500 rounded mr-1"></div>
+              <span className="text-red-500 font-bold uppercase">
+                Live
+              </span>
+            </div>
+            {countPlayingGames.map((g, index) => (
+              <div key={index} className="flex">
+                <div className="mr-5">
+                  {/* @ts-ignore */}
+                  {g.fixture.status.elapsed}
+                </div>
+
+                <div className="flex justify-center">
+                  <div>
+                    {/* @ts-ignore */}
+                    {g.teams.home.name} {g.goals.home}
+                  </div>
+                  <span>
+                    -
+                  </span>
+                  <div>
+                    {/* @ts-ignore */}
+                    {g.goals.away} {g.teams.away.name}
+                  </div>
+                </div>
+
+              </div>
+            ))}
+          </section>
+
+          <section className="shadow-md rounded-md p-2">
+            <div>Finished</div>
+            {countFinishedGames.map((g, index) => (
+              <div key={index}>
+                {/* @ts-ignore */}
+                {g.teams.home.name} - {g.teams.away.name}
+              </div>
+            ))}
+          </section>
+        </div>
+      </div>
     </div >
   );
 };
