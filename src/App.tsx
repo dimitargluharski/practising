@@ -112,17 +112,20 @@ const App = () => {
             {countPlayingGames.map((g, index) => (
               <div key={index} className="flex">
                 <div className="mr-5">
+                  {/* @ts-ignore */}
                   {g.fixture.status.elapsed}
                 </div>
 
                 <div className="flex justify-center">
                   <div>
+                    {/* @ts-ignore */}
                     {g.teams.home.name} {g.goals.home}
                   </div>
                   <span>
                     -
                   </span>
                   <div>
+                    {/* @ts-ignore */}
                     {g.goals.away} {g.teams.away.name}
                   </div>
                 </div>
@@ -135,6 +138,7 @@ const App = () => {
             <div>Finished</div>
             {countFinishedGames.map((g, index) => (
               <div key={index}>
+                {/* @ts-ignore */}
                 {g.teams.home.name} - {g.teams.away.name}
               </div>
             ))}
