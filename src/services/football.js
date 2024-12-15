@@ -195,9 +195,8 @@ export const getButterflyStatistics = async (matchId) => {
   }
 }
 
-export const getAllGames = async () => {
-  const url = `https://v3.football.api-sports.io/fixtures?date=2024-12-14`;
-  // 'https://api-football-v1.p.rapidapi.com/v3/fixtures?date=2021-01-29
+export const getAllGames = async (date) => {
+  const url = `https://v3.football.api-sports.io/fixtures?date=${date}`;
   const options = {
     method: 'GET',
     headers: {

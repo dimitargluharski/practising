@@ -9,9 +9,13 @@ import { FaPlay } from "react-icons/fa";
 const App = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    getAllGames().then((res) => setData(res)).catch((err) => console.log('err', err));
-  }, []);
+  const date = new Date();
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
 
   // TODO: Write proper types
   // @ts-ignore
@@ -40,7 +44,10 @@ const App = () => {
   // @ts-ignore
   const countPlayingGames = data.filter((g) => playingStatuses.includes(g.fixture.status.long));
 
-  console.log('data', countPlayingGames);
+  useEffect(() => {
+    getAllGames(formattedDate).then((res) => setData(res)).catch((err) => console.log('err', err));
+  }, []);
+
 
   return (
     <div className="grid grid-col-6">
