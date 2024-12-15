@@ -96,6 +96,7 @@ const App = () => {
               <div>
 
                 <div>
+                  {/* @ts-ignore */}
                   {g.teams.home.name} - {g.teams.away.name}
                 </div>
               </div>
