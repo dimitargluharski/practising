@@ -117,7 +117,7 @@ const App = () => {
       <div className="p-4">
         <div className="grid grid-cols-3 gap-5 mt-4">
           <section className="shadow-md rounded-md p-2">
-            <div>All</div>
+            <div className="font-bold uppercase">All</div>
             {filteredAllData.length > 0 ? filteredAllData.map((g, index) => (
               <div key={index}>
                 {/* @ts-ignore */}
@@ -168,11 +168,11 @@ const App = () => {
           </section>
 
           <section className="shadow-md rounded-md p-2">
-            <div>Finished</div>
+            <div className="text-gray-500 font-bold uppercase">Finished</div>
             {filteredFinishedGames.length > 0 ? filteredFinishedGames.map((g, index) => (
               <div key={index}>
                 {/* @ts-ignore */}
-                {g.teams.home.name} - {g.teams.away.name}
+                {g.teams.home.name} {g.goals.home} - {g.goals.away} {g.teams.away.name}
               </div>
             )) : (
               <div>
