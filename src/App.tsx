@@ -8,6 +8,7 @@ import { FaPlay } from "react-icons/fa";
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [query, setQuery] = useState('');
 
   const date = new Date();
 
@@ -44,10 +45,34 @@ const App = () => {
   // @ts-ignore
   const countPlayingGames = data.filter((g) => playingStatuses.includes(g.fixture.status.long));
 
+  const handleInputChangeHandler = (event: any) => {
+    const { value } = event.target;
+
+    setQuery(value);
+  };
+
+  const filteredPlayingGames = countPlayingGames.filter(
+    (g) =>
+      // @ts-ignore
+      g.teams.home.name.toLowerCase().includes(query.toLowerCase()) ||
+      // @ts-ignore
+      g.teams.away.name.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const filteredFinishedGames = countFinishedGames.filter(
+    (g) =>
+      // @ts-ignore
+      g.teams.home.name.toLowerCase().includes(query.toLowerCase()) ||
+      // @ts-ignore
+      g.teams.away.name.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // @ts-ignore
+  const filteredAllData = data.filter((g) => g.teams.home.name.toLowerCase().includes(query.toLowerCase()) || g.teams.away.name.toLowerCase().includes(query.toLowerCase()));
+
   useEffect(() => {
     getAllGames(formattedDate).then((res) => setData(res)).catch((err) => console.log('err', err));
   }, []);
-
 
   return (
     <div className="grid grid-col-6">
@@ -84,23 +109,25 @@ const App = () => {
         </div>
       </div>
 
+      {/* search input field */}
       <div className="p-4">
-        <input type="text" className="w-full p-2 shadow-lg focus:shadow-lg rounded-sm" placeholder="Search..." />
+        <input type="text" className="w-full p-2 shadow-lg focus:shadow-lg rounded-sm" placeholder="Search..." onChange={handleInputChangeHandler} value={query} />
       </div>
 
       <div className="p-4">
         <div className="grid grid-cols-3 gap-5 mt-4">
           <section className="shadow-md rounded-md p-2">
             <div>All</div>
-            {data.map((g) => (
-              <div>
-
-                <div>
-                  {/* @ts-ignore */}
-                  {g.teams.home.name} - {g.teams.away.name}
-                </div>
+            {filteredAllData.length > 0 ? filteredAllData.map((g, index) => (
+              <div key={index}>
+                {/* @ts-ignore */}
+                {g.teams.home.name} - {g.teams.away.name}
               </div>
-            ))}
+            )) : (
+              <div>
+                No results found.
+              </div>
+            )}
           </section>
 
           <section className="shadow-md rounded-md p-2">
@@ -110,7 +137,8 @@ const App = () => {
                 Live
               </span>
             </div>
-            {countPlayingGames.map((g, index) => (
+
+            {filteredPlayingGames.length > 0 ? filteredPlayingGames.map((g, index) => (
               <div key={index} className="flex">
                 <div className="mr-5">
                   {/* @ts-ignore */}
@@ -132,17 +160,25 @@ const App = () => {
                 </div>
 
               </div>
-            ))}
+            )) : (
+              <div>
+                No results found.
+              </div>
+            )}
           </section>
 
           <section className="shadow-md rounded-md p-2">
             <div>Finished</div>
-            {countFinishedGames.map((g, index) => (
+            {filteredFinishedGames.length > 0 ? filteredFinishedGames.map((g, index) => (
               <div key={index}>
                 {/* @ts-ignore */}
                 {g.teams.home.name} - {g.teams.away.name}
               </div>
-            ))}
+            )) : (
+              <div>
+                No results found.
+              </div>
+            )}
           </section>
         </div>
       </div>
