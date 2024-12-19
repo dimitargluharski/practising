@@ -1,8 +1,8 @@
 # track soccer games
 
 ### Todos:
-- [] install react-router-dom
-- [] create page folder
+- [x] install react-router-dom
+- [x] create page folder
   - [] create different pages
     - [] dashboard page (home)
       - [] add calendar component
