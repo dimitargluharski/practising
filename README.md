@@ -5,6 +5,7 @@
 - [] create page folder
   - [] create different pages
     - [] dashboard page (home)
+      - [] add calendar component
     - [] match details 
 - [] create statistics for games played
   - [] per week
