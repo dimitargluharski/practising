@@ -6,6 +6,8 @@ import { FaFlagCheckered } from "react-icons/fa";
 import { LuClock } from "react-icons/lu";
 import { FaPlay } from "react-icons/fa";
 
+import moment from 'moment';
+
 const App = () => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
@@ -121,7 +123,7 @@ const App = () => {
             {filteredAllData.length > 0 ? filteredAllData.map((g, index) => (
               <div key={index}>
                 {/* @ts-ignore */}
-                {g.teams.home.name} - {g.teams.away.name}
+                {moment.utc(g.fixture.date).local().format('HH:mm')} - {g.teams.home.name} - {g.teams.away.name}
               </div>
             )) : (
               <div>
