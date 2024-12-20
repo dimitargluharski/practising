@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getAllGames } from "./services/football";
 import { IoMdGlobe } from "react-icons/io";
 import { PiSoccerBallFill } from "react-icons/pi";
@@ -72,9 +72,15 @@ const App = () => {
   // @ts-ignore
   const filteredAllData = data.filter((g) => g.teams.home.name.toLowerCase().includes(query.toLowerCase()) || g.teams.away.name.toLowerCase().includes(query.toLowerCase()));
 
+  const fetchGames = useCallback(() => {
+    getAllGames(formattedDate)
+      .then((res) => setData(res))
+      .catch((err) => console.error('Error fetching games:', err));
+  }, [formattedDate]);
+
   useEffect(() => {
-    getAllGames(formattedDate).then((res) => setData(res)).catch((err) => console.log('err', err));
-  }, []);
+    fetchGames();
+  }, [fetchGames]);
 
   return (
     <div className="grid grid-col-6">
@@ -121,9 +127,22 @@ const App = () => {
           <section className="shadow-md rounded-md p-2">
             <div className="font-bold uppercase">All</div>
             {filteredAllData.length > 0 ? filteredAllData.map((g, index) => (
-              <div key={index}>
+              <div key={index} className="flex items-center gap-2">
                 {/* @ts-ignore */}
-                {moment.utc(g.fixture.date).local().format('HH:mm')} - {g.teams.home.name} - {g.teams.away.name}
+                <div>
+                  {/* @ts-ignore */}
+                  {moment.utc(g.fixture.date).local().format('HH:mm')}
+                </div>
+
+                <div className="w-5 h-5">
+                  {/* @ts-ignore */}
+                  <img className="h-5 w-5" src={g.league.flag} alt={g.league.flag} title={g.league.country} />
+                </div>
+
+                <div>
+                  {/* @ts-ignore */}
+                  {g.teams.home.name} - {g.teams.away.name}
+                </div>
               </div>
             )) : (
               <div>
@@ -141,24 +160,27 @@ const App = () => {
             </div>
 
             {filteredPlayingGames.length > 0 ? filteredPlayingGames.map((g, index) => (
-              <div key={index} className="flex">
+              <div key={index} className="flex items-center">
                 <div className="mr-5">
                   {/* @ts-ignore */}
                   {g.fixture.status.elapsed}
                 </div>
 
-                <div className="flex justify-center">
-                  <div>
-                    {/* @ts-ignore */}
-                    {g.teams.home.name} {g.goals.home}
-                  </div>
-                  <span>
-                    -
-                  </span>
-                  <div>
-                    {/* @ts-ignore */}
-                    {g.goals.away} {g.teams.away.name}
-                  </div>
+                <div className="h-5 w-5">
+                  {/* @ts-ignore */}
+                  <img className="w-5 h-5" src={g.league.flag} alt={g.league.flag} title={g.league.country} />
+                </div>
+
+                <div>
+                  {/* @ts-ignore */}
+                  {g.teams.home.name} {g.goals.home}
+                </div>
+                <span>
+                  -
+                </span>
+                <div>
+                  {/* @ts-ignore */}
+                  {g.goals.away} {g.teams.away.name}
                 </div>
 
               </div>
@@ -172,9 +194,16 @@ const App = () => {
           <section className="shadow-md rounded-md p-2">
             <div className="text-gray-500 font-bold uppercase">Finished</div>
             {filteredFinishedGames.length > 0 ? filteredFinishedGames.map((g, index) => (
-              <div key={index}>
-                {/* @ts-ignore */}
-                {g.teams.home.name} {g.goals.home} - {g.goals.away} {g.teams.away.name}
+              <div key={index} className="flex items-center">
+                <div className="w-5 h-5">
+                  {/* @ts-ignore */}
+                  <img className="h-5 w-5" src={g.league.flag} alt={g.league.flag} title={g.league.country} />
+                </div>
+
+                <div>
+                  {/* @ts-ignore */}
+                  {g.teams.home.name} {g.goals.home} - {g.goals.away} {g.teams.away.name}
+                </div>
               </div>
             )) : (
               <div>
