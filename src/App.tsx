@@ -160,8 +160,8 @@ const App = () => {
             </div>
 
             {filteredPlayingGames.length > 0 ? filteredPlayingGames.map((g, index) => (
-              <div key={index} className="flex items-center">
-                <div className="mr-5">
+              <div key={index} className="flex items-center gap-2">
+                <div>
                   {/* @ts-ignore */}
                   {g.fixture.status.elapsed}
                 </div>
@@ -194,7 +194,7 @@ const App = () => {
           <section className="shadow-md rounded-md p-2">
             <div className="text-gray-500 font-bold uppercase">Finished</div>
             {filteredFinishedGames.length > 0 ? filteredFinishedGames.map((g, index) => (
-              <div key={index} className="flex items-center">
+              <div key={index} className="flex items-center gap-2">
                 <div className="w-5 h-5">
                   {/* @ts-ignore */}
                   <img className="h-5 w-5" src={g.league.flag} alt={g.league.flag} title={g.league.country} />
