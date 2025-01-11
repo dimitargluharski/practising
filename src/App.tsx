@@ -5,22 +5,18 @@ import { PiSoccerBallFill } from "react-icons/pi";
 import { FaFlagCheckered } from "react-icons/fa";
 import { LuClock } from "react-icons/lu";
 import { FaPlay } from "react-icons/fa";
+import { format } from 'date-fns';
 
 import moment from 'moment';
+import { CalendarComponent } from "./components/Calendar/Calendar";
 
 const App = () => {
   const [data, setData] = useState([]);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState<string>('');
+  const [calendarDate, setCalendarDate] = useState<string>(
+    format(new Date(), "yyyy-MM-dd")
+  );
 
-  const date = new Date();
-
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  const formattedDate = `${year}-${month}-${day}`;
-
-  // TODO: Write proper types
   // @ts-ignore
   const countriesCount = data.map((c) => c.league.country);
   const filterUniqueCountries = [...new Set(countriesCount)];
@@ -72,11 +68,17 @@ const App = () => {
   // @ts-ignore
   const filteredAllData = data.filter((g) => g.teams.home.name.toLowerCase().includes(query.toLowerCase()) || g.teams.away.name.toLowerCase().includes(query.toLowerCase()));
 
+  const handleChangeCalendarDay = (selectedDate: Date) => {
+    const formattedDate = format(selectedDate, "yyyy-MM-dd");
+
+    setCalendarDate(formattedDate);
+  };
+
   const fetchGames = useCallback(() => {
-    getAllGames(formattedDate)
+    getAllGames(calendarDate)
       .then((res) => setData(res))
       .catch((err) => console.error('Error fetching games:', err));
-  }, [formattedDate]);
+  }, [calendarDate]);
 
   useEffect(() => {
     fetchGames();
@@ -113,7 +115,7 @@ const App = () => {
         </div>
 
         <div>
-          {/* calendar */}
+          <CalendarComponent calendarDate={calendarDate} handleChangeCalendarDay={handleChangeCalendarDay} />
         </div>
       </div>
 
