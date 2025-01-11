@@ -9,9 +9,9 @@ interface CalendarComponentProps {
 export const CalendarComponent = ({ calendarDate, handleChangeCalendarDay }: CalendarComponentProps) => {
   return (
     <Calendar
+      className="h-full w-full"
       defaultActiveStartDate={new Date()}
       selectRange={false}
-      className="flex flex-col justify-center"
       // @ts-ignore
       onChange={handleChangeCalendarDay}
       value={calendarDate}
