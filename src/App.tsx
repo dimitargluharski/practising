@@ -85,46 +85,51 @@ const App = () => {
   }, [fetchGames]);
 
   return (
-    <div className="grid grid-col-6">
-      <div className="p-4">
-        <div className="grid grid-cols-5">
-          <div className="flex items-center p-4 shadow-lg rounded-md">
-            <PiSoccerBallFill className="w-5 h-5" />
-            {data.length} games today
-          </div>
-
-          <div className="flex items-center p-4 shadow-lg rounded-md">
-            <IoMdGlobe className="w-5 h-5" />
-            {filterUniqueCountries.length} countries
-          </div>
-
-          <div className="flex items-center p-4 shadow-lg rounded-md">
-            <FaFlagCheckered className="w-5 h-5" />
-            {countFinishedGames.length} finished
-          </div>
-
-          <div className="flex items-center p-4 shadow-lg rounded-md">
-            <LuClock className="w-5 h-5" />
-            {notStartedGames.length} not started
-          </div>
-
-          <div className="flex items-center p-4 shadow-lg rounded-md">
-            <FaPlay className="w-5 h-5 " />
-            {countPlayingGames.length} games in play
-          </div>
-        </div>
-
-        <div>
-          <CalendarComponent calendarDate={calendarDate} handleChangeCalendarDay={handleChangeCalendarDay} />
-        </div>
-      </div>
-
-      {/* search input field */}
-      <div className="p-4">
+    <div className="p-4 flex flex-col gap-5">
+      <div>
         <input type="text" className="w-full p-2 shadow-lg focus:shadow-lg rounded-sm" placeholder="Search..." onChange={handleInputChangeHandler} value={query} />
       </div>
 
-      <div className="p-4">
+      <div>
+        <div className="flex gap-5">
+          <div className="grid grid-cols-3 gap-5 w-2/3">
+            <div className="flex items-center p-6 shadow-lg rounded-lg bg-white border border-gray-200">
+              <PiSoccerBallFill className="w-7 h-7 mr-3 text-blue-500" />
+              <span className="text-xl font-bold">{data.length} games today</span>
+            </div>
+
+            <div className="flex items-center p-6 shadow-lg rounded-lg bg-white border border-gray-200">
+              <IoMdGlobe className="w-7 h-7 mr-3 text-green-500" />
+              <span className="text-xl font-bold">{filterUniqueCountries.length} countries</span>
+            </div>
+
+            <div className="flex items-center p-6 shadow-lg rounded-lg bg-white border border-gray-200">
+              <FaFlagCheckered className="w-7 h-7 mr-3 text-red-500" />
+              <span className="text-xl font-bold">{countFinishedGames.length} finished</span>
+            </div>
+
+            <div className="flex items-center p-6 shadow-lg rounded-lg bg-white border border-gray-200">
+              <LuClock className="w-7 h-7 mr-3 text-yellow-500" />
+              <span className="text-xl font-bold">{notStartedGames.length} not started</span>
+            </div>
+
+            <div className="flex items-center p-6 shadow-lg rounded-lg bg-white border border-gray-200">
+              <FaPlay className="w-7 h-7 mr-3 text-purple-500" />
+              <span className="text-xl font-bold">{countPlayingGames.length} games in play</span>
+            </div>
+          </div>
+
+
+          <div className="bg-slate-300 p-2 rounded-lg border border-gray-300 w-1/3 flex items-center justify-center">
+            <CalendarComponent
+              calendarDate={calendarDate}
+              handleChangeCalendarDay={handleChangeCalendarDay}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
         <div className="grid grid-cols-3 gap-5 mt-4">
           <section className="shadow-md rounded-md p-2">
             <div className="font-bold uppercase">All</div>
