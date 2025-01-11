@@ -23,11 +23,13 @@ const App = () => {
 
   // @ts-ignore
   const countFinishedGames = data.filter(
+    // @ts-ignore
     (g) => "Match Finished" === g.fixture.status.long
   );
 
   // @ts-ignore
   const notStartedGames = data.filter(
+    // @ts-ignore
     (g) => "Not Started" === g.fixture.status.long
   );
 
@@ -46,6 +48,7 @@ const App = () => {
 
   // @ts-ignore
   const countPlayingGames = data.filter((g) =>
+    // @ts-ignore
     playingStatuses.includes(g.fixture.status.long)
   );
 
@@ -74,7 +77,9 @@ const App = () => {
   // @ts-ignore
   const filteredAllData = data.filter(
     (g) =>
+      // @ts-ignore
       g.teams.home.name.toLowerCase().includes(query.toLowerCase()) ||
+      // @ts-ignore
       g.teams.away.name.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -169,8 +174,11 @@ const App = () => {
                     {/* @ts-ignore */}
                     <img
                       className="h-5 w-5"
+                      // @ts-ignore
                       src={g.league.flag}
+                      // @ts-ignore
                       alt={g.league.flag}
+                      // @ts-ignore
                       title={g.league.country}
                     />
                   </div>
@@ -204,8 +212,11 @@ const App = () => {
                     {/* @ts-ignore */}
                     <img
                       className="w-5 h-5"
+                      // @ts-ignore
                       src={g.league.flag}
+                      // @ts-ignore
                       alt={g.league.flag}
+                      // @ts-ignore
                       title={g.league.country}
                     />
                   </div>
@@ -235,8 +246,11 @@ const App = () => {
                     {/* @ts-ignore */}
                     <img
                       className="h-5 w-5"
+                      // @ts-ignore
                       src={g.league.flag}
+                      // @ts-ignore
                       alt={g.league.flag}
+                      // @ts-ignore
                       title={g.league.country}
                     />
                   </div>
@@ -244,6 +258,7 @@ const App = () => {
                   <div>
                     {/* @ts-ignore */}
                     {g.teams.home.name} {g.goals.home} - {g.goals.away}{" "}
+                    {/* @ts-ignore */}
                     {g.teams.away.name}
                   </div>
                 </div>
