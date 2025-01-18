@@ -1,21 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
-import { getAllGames } from "./services/football";
+import { useContext, useState } from "react";
 import { IoMdGlobe } from "react-icons/io";
 import { PiSoccerBallFill } from "react-icons/pi";
 import { FaFlagCheckered } from "react-icons/fa";
 import { LuClock } from "react-icons/lu";
 import { FaPlay } from "react-icons/fa";
-import { format } from "date-fns";
 
 import moment from "moment";
 import { CalendarComponent } from "./components/Calendar/Calendar";
+import { DataContext, DataContextProps } from "./context/DataContext";
 
 const App = () => {
-  const [data, setData] = useState([]);
   const [query, setQuery] = useState<string>("");
-  const [calendarDate, setCalendarDate] = useState<string>(
-    format(new Date(), "yyyy-MM-dd")
-  );
+  // @ts-ignore
+  const { data, handleChangeCalendarDay, calendarDate } = useContext<DataContextProps | undefined>(DataContext);
+
 
   // @ts-ignore
   const countriesCount = data.map((c) => c.league.country);
@@ -59,7 +57,7 @@ const App = () => {
   };
 
   const filteredPlayingGames = countPlayingGames.filter(
-    (g) =>
+    (g: any) =>
       // @ts-ignore
       g.teams.home.name.toLowerCase().includes(query.toLowerCase()) ||
       // @ts-ignore
@@ -67,7 +65,7 @@ const App = () => {
   );
 
   const filteredFinishedGames = countFinishedGames.filter(
-    (g) =>
+    (g: any) =>
       // @ts-ignore
       g.teams.home.name.toLowerCase().includes(query.toLowerCase()) ||
       // @ts-ignore
@@ -76,28 +74,12 @@ const App = () => {
 
   // @ts-ignore
   const filteredAllData = data.filter(
-    (g) =>
+    (g: any) =>
       // @ts-ignore
       g.teams.home.name.toLowerCase().includes(query.toLowerCase()) ||
       // @ts-ignore
       g.teams.away.name.toLowerCase().includes(query.toLowerCase())
   );
-
-  const handleChangeCalendarDay = (selectedDate: Date) => {
-    const formattedDate = format(selectedDate, "yyyy-MM-dd");
-
-    setCalendarDate(formattedDate);
-  };
-
-  const fetchGames = useCallback(() => {
-    getAllGames(calendarDate)
-      .then((res) => setData(res))
-      .catch((err) => console.error("Error fetching games:", err));
-  }, [calendarDate]);
-
-  useEffect(() => {
-    fetchGames();
-  }, [fetchGames]);
 
   return (
     <div className="p-4 flex flex-col gap-5">
@@ -162,6 +144,7 @@ const App = () => {
           <section className="shadow-md rounded-md p-2">
             <div className="font-bold uppercase">All</div>
             {filteredAllData.length > 0 ? (
+              // @ts-ignore
               filteredAllData.map((g, index) => (
                 <div key={index} className="flex items-center gap-2">
                   {/* @ts-ignore */}
@@ -201,6 +184,7 @@ const App = () => {
             </div>
 
             {filteredPlayingGames.length > 0 ? (
+              // @ts-ignore
               filteredPlayingGames.map((g, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div>
@@ -240,6 +224,7 @@ const App = () => {
           <section className="shadow-md rounded-md p-2">
             <div className="text-gray-500 font-bold uppercase">Finished</div>
             {filteredFinishedGames.length > 0 ? (
+              // @ts-ignore
               filteredFinishedGames.map((g, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-5 h-5">
