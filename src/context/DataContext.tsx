@@ -1,6 +1,6 @@
-import { getAllGames } from '@/services/football';
 import { format } from 'date-fns';
 import { createContext, useCallback, useEffect, useState } from 'react';
+import { getAllGames } from '../services/football';
 
 export interface Game {
   fixture: {
