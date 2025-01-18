@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { FiClock } from "react-icons/fi";
 import { FiTv } from "react-icons/fi";
 import { MdOutlineDashboard } from "react-icons/md";
+import { LuCalendarClock } from "react-icons/lu";
 
 export const Navbar = () => {
   return (
@@ -25,7 +25,7 @@ export const Navbar = () => {
         className={({ isActive }) => `${isActive ? 'text-yellow-500' : 'text-slate-500'}`}
         title="Fixtures"
       >
-        <FiClock className="w-7 h-7" />
+        <LuCalendarClock className="w-7 h-7" />
       </NavLink>
     </nav >
   )
